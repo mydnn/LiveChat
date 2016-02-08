@@ -1,0 +1,277 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage
+
+<div class="card widget-settings">
+    <!-- Begin: Settings Panel Header -->
+    <div class="card-header ch-alt pd-tb-15 clearfix">
+        <h2 class="m-b-10"><i class="md md-settings"></i>
+            &nbsp;@Dnn.LocalizeString("WidgetSettings")
+            <small>@Dnn.LocalizeString("WidgetSettings.Help")</small>
+        </h2>
+        <ul class="actions">
+            <li>
+                <a href="" onclick="location.reload();">
+                    <i class="md md-cached"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- End: Settings Panel Header -->
+    <div class="card-body card-padding cp-container">
+        <div class="row">
+            <uib-tabset>
+                <uib-tab select="onStepTabClick('appearance')">
+                    <uib-tab-heading><i class="md md-palette tab-icon"></i>@Dnn.LocalizeString("Appearance")</uib-tab-heading>
+                    <div class="col-md-8 clearfix m-b-20">
+                        <div class="head">
+                            <h3><i class="md md-desktop-windows m-r-5"></i>@Dnn.LocalizeString("ChatWindow")</h3>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("TopTitle")</label>
+                            <input type="text" ng-model='localizeString["Support.Text"]' class="pull-left w-200 cust-input" />
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("ThemeColor")</label>
+                            <div class="pull-left w-200 fg-line dropdown">
+                                <input type="text" data-toggle="dropdown" ng-model="widgetSettings.LiveChatThemeColor" class="w-200 cust-input cp-value">
+                                <div class="dropdown-menu">
+                                    <ng-farbtastic ng-model="widgetSettings.LiveChatThemeColor"></ng-farbtastic>
+                                </div>
+                                <i class="cp-value" style="background-color: {{ widgetSettings.LiveChatThemeColor }};"></i>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("TitleColor")</label>
+                            <div class="pull-left w-200 fg-line dropdown">
+                                <input type="text" data-toggle="dropdown" ng-model="widgetSettings.LiveChatTitleColor" class="w-200 cust-input cp-value" >
+                                <div class="dropdown-menu">
+                                    <ng-farbtastic ng-model="widgetSettings.LiveChatTitleColor"></ng-farbtastic>
+                                </div>
+                                <i class="cp-value" style="background-color: {{ widgetSettings.LiveChatTitleColor }};"></i>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("WindowSize")</label>
+                            <div class="btn-group">
+                                <label class="btn btn-default" ng-model="widgetSettings.LiveChatWindowSize" uib-btn-radio="'Large'">@Dnn.LocalizeString("Large")</label>
+                                <label class="btn btn-default" ng-model="widgetSettings.LiveChatWindowSize" uib-btn-radio="'Medium'">@Dnn.LocalizeString("Medium")</label>
+                                <label class="btn btn-default" ng-model="widgetSettings.LiveChatWindowSize" uib-btn-radio="'Small'">@Dnn.LocalizeString("Small")</label>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("WidgetPosition")</label>
+                            <div class="btn-group">
+                                <label class="btn btn-default" ng-model="widgetSettings.LiveChatWidgetPosition" uib-btn-radio="'BottomLeft'">@Dnn.LocalizeString("BottomLeft")</label>
+                                <label class="btn btn-default" ng-model="widgetSettings.LiveChatWidgetPosition" uib-btn-radio="'BottomRight'">@Dnn.LocalizeString("BottomRight")</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("EnableRating")</label>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="widgetSettings.LiveChatEnableRating" />
+                                    <i class="input-helper"></i>
+                                    @Dnn.LocalizeString("AllowVisitorsToRate")
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 clearfix m-b-20">
+                        <div class="head">
+                            <h3 ><i class="md md-edit m-r-5"></i>@Dnn.LocalizeString("Concierge")</h3>
+                            </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("DisplayTitle")</label>
+                            <input type="text" ng-model='localizeString["LiveSupport.Text"]' class="pull-left w-200 cust-input" />
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("Byline")</label>
+                            <input type="text" ng-model='localizeString["AskUs.Text"]' class="pull-left w-200 cust-input" />
+                        </div>
+                    </div>
+                    <div class="col-md-8 clearfix m-b-20">
+                        <div class="head">
+                            <h3><i class="md md-insert-comment m-r-5"></i>@Dnn.LocalizeString("MessageStyle")</h3>
+                        </div>
+                        <div class="form-group">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("ShowAvatars")</label>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="widgetSettings.LiveChatShowAvatar" />
+                                    <i class="input-helper"></i>
+                                    @Dnn.LocalizeString("DisplayAgentsAndVisitorsAvatars.Text")
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("MessageStyle")</label>
+                            <div class="btn-group">
+                                <label class="btn btn-default" ng-model="widgetSettings.LiveChatMessageStyle" uib-btn-radio="'SpeechBubbles'">@Dnn.LocalizeString("SpeechBubbles")</label>
+                                <label class="btn btn-default" ng-model="widgetSettings.LiveChatMessageStyle" uib-btn-radio="'SimpleLive'">@Dnn.LocalizeString("SimpleLive")</label>
+                            </div>
+                        </div>
+                    </div>
+                </uib-tab>
+                <uib-tab select="onStepTabClick('forms')">
+                    <uib-tab-heading><i class="md md-receipt tab-icon"></i>@Dnn.LocalizeString("Forms")</uib-tab-heading>
+                    <div class="col-md-8 clearfix">
+                        <div class="head">
+                            <h3><i class="md md-receipt m-r-5"></i>@Dnn.LocalizeString("FormItems")</h3>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("NameAndEmail")</label>
+                            <input type="text" ng-model='localizeString["IntroduceYourself.Text"]' class="pull-left w-200 cust-input" />
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("Department")</label>
+                            <input type="text" ng-model='localizeString["SelectDepartment.Text"]' class="pull-left w-200 cust-input" />
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("Message")</label>
+                            <input type="text" ng-model='localizeString["Message.Text"]' class="pull-left w-200 cust-input"/>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("MessagePlaceholder")</label>
+                            <input type="text" ng-model='localizeString["TypeYourMessage.Text"]' class="pull-left w-200 cust-input"/>
+                        </div>
+                    </div>
+                    <div class="col-md-8 clearfix">
+                        <div class="head">
+                            <h3><i class="md md-sms m-r-5"></i>@Dnn.LocalizeString("OnlineForm")</h3>
+                        </div>
+                        <p>@Dnn.LocalizeString("RequireVisitorsForm")</p>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("Message")</label>
+                            <textarea ng-model='localizeString["PreGreeting.Text"]' rows="2" class="pull-left w-200 cust-input" ng-focus="onFormElementFocus('online')"></textarea>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("StartChat")</label>
+                            <input type="text" ng-model='localizeString["StartChat.Text"]' class="pull-left w-200 cust-input" ng-focus="onFormElementFocus('online')" />
+                        </div>
+                    </div>
+                    <div class="col-md-8 clearfix">
+                        <div class="head">
+                            <h3><i class="md md-email m-r-5"></i>@Dnn.LocalizeString("OfflineForm")</h3>
+                        </div>
+                        <p>@Dnn.LocalizeString("AllowVisitorsSendMessage")</p>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("OfflineForm")</label>
+                            <textarea ng-model='localizeString["OfflineMessage.Text"]' rows="2" class="pull-left w-200  cust-input" ng-focus="onFormElementFocus('offline')"></textarea>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("SendMessage")</label>
+                            <input type="text" ng-model='localizeString["SendMessage.Text"]' class="pull-left w-200 cust-input" ng-focus="onFormElementFocus('offline')" />
+                        </div>
+                    </div>
+                </uib-tab>
+                <uib-tab select="onStepTabClick('minbutton')">
+                    <uib-tab-heading><i class="md md-visibility tab-icon"></i>@Dnn.LocalizeString("MinButton")</uib-tab-heading>
+                    <div class="col-md-8 clearfix">
+                        <div class="head">
+                            <h3><i class="md md-visibility m-r-5"></i>@Dnn.LocalizeString("MinimizedChatButton")</h3>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">Online Button</label>
+                            <textarea row="3" ng-model='minButtonSettings.OnlineButton' class="pull-left w-200 cust-input rsize" ng-focus="onFormElementFocus('online')"
+                                data-original-title="@Dnn.LocalizeString("UseHtml")" title="" data-content="@Dnn.LocalizeString("YouCanUseHtml")" data-placement="right" data-toggle="popover"  data-trigger="focus"></textarea>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("OnlineBGColor")</label>
+                            <div class="pull-left w-200 fg-line dropdown">
+                                <input type="text" data-toggle="dropdown" ng-model="minButtonSettings.OnlineButtonBGColor" class="w-200 cust-input cp-value" ng-focus="onFormElementFocus('online')"/>
+                                <div class="dropdown-menu">
+                                    <ng-farbtastic ng-model="minButtonSettings.OnlineButtonBGColor"></ng-farbtastic>
+                                </div>
+                                <i class="cp-value" style="background-color: {{ minButtonSettings.OnlineButtonBGColor}};"></i>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("OnlineColor")</label>
+                            <div class="pull-left w-200 fg-line dropdown">
+                                <input type="text" data-toggle="dropdown" ng-model="minButtonSettings.OnlineButtonColor" class="w-200 cust-input cp-value" ng-focus="onFormElementFocus('online')" />
+                                <div class="dropdown-menu">
+                                    <ng-farbtastic ng-model="minButtonSettings.OnlineButtonColor"></ng-farbtastic>
+                                </div>
+                                <i class="cp-value" style="background-color: {{ minButtonSettings.OnlineButtonColor}};"></i>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("OfflineButton")</label>
+                            <textarea row="3" ng-model='minButtonSettings.OfflineButton' class="pull-left w-200 cust-input rsize" ng-focus="onFormElementFocus('offline')"
+                                data-original-title="@Dnn.LocalizeString("UseHtml")" title="" data-content="@Dnn.LocalizeString("YouCanUseHtml")" data-placement="right" data-toggle="popover"  data-trigger="focus"></textarea>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("OfflineBGColor")</label>
+                            <div class="pull-left w-200 fg-line dropdown">
+                                <input type="text" data-toggle="dropdown" ng-model="minButtonSettings.OfflineButtonBGColor" class="w-200 cust-input cp-value" ng-focus="onFormElementFocus('offline')"/>
+                                <div class="dropdown-menu">
+                                    <ng-farbtastic ng-model="minButtonSettings.OfflineButtonBGColor"></ng-farbtastic>
+                                </div>
+                                <i class="cp-value" style="background-color: {{ minButtonSettings.OfflineButtonBGColor}};"></i>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("OfflineColor")</label>
+                            <div class="pull-left w-200 fg-line dropdown">
+                                <input type="text" data-toggle="dropdown" ng-model="minButtonSettings.OfflineButtonColor" class="w-200 cust-input cp-value" ng-focus="onFormElementFocus('offline')" />
+                                <div class="dropdown-menu">
+                                    <ng-farbtastic ng-model="minButtonSettings.OfflineButtonColor"></ng-farbtastic>
+                                </div>
+                                <i class="cp-value" style="background-color: {{ minButtonSettings.OfflineButtonColor}};"></i>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("HorizontalPosition")</label>
+                            <div class="btn-group">
+                                <label class="btn btn-default" ng-model="minButtonSettings.HorizontalPosition" uib-btn-radio="'Left'">@Dnn.LocalizeString("Left")</label>
+                                <label class="btn btn-default" ng-model="minButtonSettings.HorizontalPosition" uib-btn-radio="'Center1'">@Dnn.LocalizeString("Center")</label>
+                                <label class="btn btn-default" ng-model="minButtonSettings.HorizontalPosition" uib-btn-radio="'Right'">@Dnn.LocalizeString("Right")</label>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("VerticalPosition")</label>
+                            <div class="btn-group">
+                                <label class="btn btn-default" ng-model="minButtonSettings.VerticalPosition" uib-btn-radio="'Top'">@Dnn.LocalizeString("Top")</label>
+                                <label class="btn btn-default" ng-model="minButtonSettings.VerticalPosition" uib-btn-radio="'Center2'">@Dnn.LocalizeString("Center")</label>
+                                <label class="btn btn-default" ng-model="minButtonSettings.VerticalPosition" uib-btn-radio="'Bottom'">@Dnn.LocalizeString("Bottom")</label>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("Rotate")</label>
+                            <div class="btn-group">
+                                <label class="btn btn-default" ng-model="minButtonSettings.Rotate" uib-btn-radio="'0'">@Dnn.LocalizeString("Normal")</label>
+                                <label class="btn btn-default" ng-model="minButtonSettings.Rotate" uib-btn-radio="'-90'">@Dnn.LocalizeString("90DegreeDec")</label>
+                                <label class="btn btn-default" ng-model="minButtonSettings.Rotate" uib-btn-radio="'90'">@Dnn.LocalizeString("90Degree")</label>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("CssStyle")</label>
+                            <div class="pull-left w-200 fg-line dropdown">
+                                <textarea row="8" ng-model='minButtonSettings.CssStyle' class="pull-left w-300 cust-input rsize"></textarea>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </uib-tab>
+                <uib-tab>
+                    <uib-tab-heading><i class="md md-collections tab-icon"></i>@Dnn.LocalizeString("HtmlTemplate")</uib-tab-heading>
+                    <textarea ng-model='livechat.WidgetHtml' rows="20" class="pull-left w-600 cust-input" ng-disabled="true"></textarea>
+                </uib-tab>
+            </uib-tabset>
+            <hr />
+            <button type="button" class="btn btn-primary m-t-5" ng-click="onUpdateSettingsClick();">@Dnn.LocalizeString("Update")</button>
+        </div>
+    </div>
+    <div dynamic="livechat.WidgetHtml" ng-show="isVisibleWidget"></div>
+    <div id="livechat-minbutton-panel">
+        <div class="livechat-minbutton livechat-minbutton-{{minButtonSettings.HorizontalPosition}} livechat-minbutton-{{minButtonSettings.VerticalPosition}} rotate-{{minButtonSettings.Rotate}} lhidden-{{isVisibleWidget}}">
+            <div class="online-button" data-livechat-isonline="online" style="background-color: {{minButtonSettings.OnlineButtonBGColor}}; color: {{minButtonSettings.OnlineButtonColor}}" 
+                    ng-bind-html="minButtonSettings.OnlineButton" ng-show="isAgentOnline"></div>
+            <div class="offline-button" data-livechat-isonline="offline" style="background-color: {{minButtonSettings.OfflineButtonBGColor}}; color: {{minButtonSettings.OfflineButtonColor}}" 
+                ng-bind-html="minButtonSettings.OfflineButton" ng-show="!isAgentOnline"></div>
+        </div>
+    </div>
+</div>
+
+
+
+

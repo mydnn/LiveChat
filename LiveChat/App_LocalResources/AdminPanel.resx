@@ -1,0 +1,564 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="90Degree.Text" xml:space="preserve">
+    <value>90 Degree</value>
+  </data>
+  <data name="90DegreeDec.Text" xml:space="preserve">
+    <value>-90 Degree</value>
+  </data>
+  <data name="ActiveVisitors.Text" xml:space="preserve">
+    <value>Active Visitors</value>
+  </data>
+  <data name="AddAgent.Text" xml:space="preserve">
+    <value>Add Agent</value>
+  </data>
+  <data name="AddAgentMsg.Text" xml:space="preserve">
+    <value>Agent has been created successfully.</value>
+  </data>
+  <data name="AddDepartment.Text" xml:space="preserve">
+    <value>Add Department</value>
+  </data>
+  <data name="AddDepartmentMsg.Text" xml:space="preserve">
+    <value>Department has been created successfully.</value>
+  </data>
+  <data name="AddNewAgent.Text" xml:space="preserve">
+    <value>Add New Agent</value>
+  </data>
+  <data name="AddNewDepartment.Text" xml:space="preserve">
+    <value>Add New Department</value>
+  </data>
+  <data name="AdminPanel.Text" xml:space="preserve">
+    <value>Admin Panel</value>
+  </data>
+  <data name="Agents.Text" xml:space="preserve">
+    <value>Agents</value>
+  </data>
+  <data name="AgentsViewPermission.Text" xml:space="preserve">
+    <value>View permission of the current live chats for agents</value>
+  </data>
+  <data name="AllAgentsInDepartment.Text" xml:space="preserve">
+    <value>All Agents In Department</value>
+  </data>
+  <data name="AllowVisitorsSendMessage.Text" xml:space="preserve">
+    <value>Allow visitors to send you messages when you are offline. To receive email notification.</value>
+  </data>
+  <data name="AllowVisitorsToRate.Text" xml:space="preserve">
+    <value>Allow visitors to rate their chats with your agents.</value>
+  </data>
+  <data name="Anonymous.Text" xml:space="preserve">
+    <value>Anonymous</value>
+  </data>
+  <data name="Appearance.Text" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
+  <data name="AreYouSure.Text" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="BasicSettings.Help" xml:space="preserve">
+    <value>You can customize and limited live chat module!</value>
+  </data>
+  <data name="BasicSettings.Text" xml:space="preserve">
+    <value>Basic Settings</value>
+  </data>
+  <data name="BasicSettingsUpdatedAlert.Text" xml:space="preserve">
+    <value>Basic Settings is not enabled!</value>
+  </data>
+  <data name="Bottom.Text" xml:space="preserve">
+    <value>Bottom</value>
+  </data>
+  <data name="BottomLeft.Text" xml:space="preserve">
+    <value>Bottom Left</value>
+  </data>
+  <data name="BottomRight.Text" xml:space="preserve">
+    <value>Bottom Right</value>
+  </data>
+  <data name="Byline.Text" xml:space="preserve">
+    <value>Byline</value>
+  </data>
+  <data name="Cancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Center.Text" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="ChatWindow.Text" xml:space="preserve">
+    <value>Chat Window</value>
+  </data>
+  <data name="ClearSessionStorage.Text" xml:space="preserve">
+    <value>Clear Session Storage</value>
+  </data>
+  <data name="Concierge.Text" xml:space="preserve">
+    <value>Concierge</value>
+  </data>
+  <data name="CssStyle.Text" xml:space="preserve">
+    <value>Css Style</value>
+  </data>
+  <data name="DeleteAgentConfirm.Text" xml:space="preserve">
+    <value>After deleted agent, history is not deleted</value>
+  </data>
+  <data name="DeleteAgentMsg.Text" xml:space="preserve">
+    <value>Agent has been removed successfully.</value>
+  </data>
+  <data name="DeleteDepartmentConfirm.Text" xml:space="preserve">
+    <value>If the department have agents you can not delete department</value>
+  </data>
+  <data name="DeleteDepartmentMsg.Text" xml:space="preserve">
+    <value>Department has been removed successfully.</value>
+  </data>
+  <data name="DepartmentName.Text" xml:space="preserve">
+    <value>Department Name</value>
+  </data>
+  <data name="Departments.Text" xml:space="preserve">
+    <value>Departments</value>
+  </data>
+  <data name="Description.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DisplayAgentsAndVisitorsAvatars.Text" xml:space="preserve">
+    <value>Display agents' and visitors' avatars in chat messages.</value>
+  </data>
+  <data name="DisplayName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="DisplayTitle.Text" xml:space="preserve">
+    <value>Display Title</value>
+  </data>
+  <data name="Done.Text" xml:space="preserve">
+    <value>Done!</value>
+  </data>
+  <data name="Edit.Text" xml:space="preserve">
+    <value>Edit </value>
+  </data>
+  <data name="Email.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailTemplates.Text" xml:space="preserve">
+    <value>Email Templates</value>
+  </data>
+  <data name="Enabled.Text" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="EnableRating.Text" xml:space="preserve">
+    <value>Enable Rating</value>
+  </data>
+  <data name="Error.Text" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorMessage.Text" xml:space="preserve">
+    <value>Field value is required</value>
+  </data>
+  <data name="ErrorMessageValidateNumeric.Text" xml:space="preserve">
+    <value>Value must be a numeric</value>
+  </data>
+  <data name="Exit.Text" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="ExportToExcel.Text" xml:space="preserve">
+    <value>Export To Excel</value>
+  </data>
+  <data name="FindAgent.Text" xml:space="preserve">
+    <value>Find a Agent...</value>
+  </data>
+  <data name="FindDepartment.Text" xml:space="preserve">
+    <value>Find a Department</value>
+  </data>
+  <data name="FindVisitor.Text" xml:space="preserve">
+    <value>Find a Visitor</value>
+  </data>
+  <data name="FormItems.Text" xml:space="preserve">
+    <value>Form Items</value>
+  </data>
+  <data name="Forms.Text" xml:space="preserve">
+    <value>Forms</value>
+  </data>
+  <data name="FunctionalitySettings.Text" xml:space="preserve">
+    <value>Functionality Settings</value>
+  </data>
+  <data name="History.Text" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Home.Text" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="HorizontalPosition.Text" xml:space="preserve">
+    <value>Horizontal Position</value>
+  </data>
+  <data name="Hours.Text" xml:space="preserve">
+    <value>hour</value>
+  </data>
+  <data name="HtmlTemplate.Text" xml:space="preserve">
+    <value>Html Template</value>
+  </data>
+  <data name="IncomingChats.Text" xml:space="preserve">
+    <value>Incoming Chats</value>
+  </data>
+  <data name="Large.Text" xml:space="preserve">
+    <value>Large</value>
+  </data>
+  <data name="Left.Text" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="LiveChat.Text" xml:space="preserve">
+    <value>Live Chat</value>
+  </data>
+  <data name="LiveChatEnabled.Text" xml:space="preserve">
+    <value>Live Chat Enabled</value>
+  </data>
+  <data name="LiveChatEnabledAlert.Text" xml:space="preserve">
+    <value>Live Chat is not enabled! for chatting with visitors it must enabled!</value>
+  </data>
+  <data name="Manage.Text" xml:space="preserve">
+    <value>Manage</value>
+  </data>
+  <data name="Medium.Text" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="Message.Text" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="MessageStyle.Text" xml:space="preserve">
+    <value>Message Style</value>
+  </data>
+  <data name="Min.Text" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="MinButton.Text" xml:space="preserve">
+    <value>Min Button</value>
+  </data>
+  <data name="MinimizedChatButton.Text" xml:space="preserve">
+    <value>Minimized Chat Button</value>
+  </data>
+  <data name="MyDnnSupport.Text" xml:space="preserve">
+    <value>MyDnn Support</value>
+  </data>
+  <data name="Name.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NameAndEmail.Text" xml:space="preserve">
+    <value>Name,Email</value>
+  </data>
+  <data name="No.Text" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoAgents.Text" xml:space="preserve">
+    <value>No agents...</value>
+  </data>
+  <data name="NoDepartments.Text" xml:space="preserve">
+    <value>No departments...</value>
+  </data>
+  <data name="Normal.Text" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="OfflineBGColor.Text" xml:space="preserve">
+    <value>Offline BG Color</value>
+  </data>
+  <data name="OfflineButton.Text" xml:space="preserve">
+    <value>Offline Button</value>
+  </data>
+  <data name="OfflineColor.Text" xml:space="preserve">
+    <value>Offline Color</value>
+  </data>
+  <data name="OfflineEmailTemplate.Text" xml:space="preserve">
+    <value>Offline Email Template</value>
+  </data>
+  <data name="OfflineForm.Text" xml:space="preserve">
+    <value>Offline Form</value>
+  </data>
+  <data name="OfflineMessage.Text" xml:space="preserve">
+    <value>Offline Message</value>
+  </data>
+  <data name="Online.Text" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="OnlineBGColor.Text" xml:space="preserve">
+    <value>Online BG Color</value>
+  </data>
+  <data name="OnlineColor.Text" xml:space="preserve">
+    <value>Online Color</value>
+  </data>
+  <data name="OnlineForm.Text" xml:space="preserve">
+    <value>Online Form</value>
+  </data>
+  <data name="OnlyCurrentAgents.Text" xml:space="preserve">
+    <value>Only Current Agents</value>
+  </data>
+  <data name="OnlyCurrentAgentsAndAdmin.Text" xml:space="preserve">
+    <value>Only Current Agents And Admin</value>
+  </data>
+  <data name="PlaySoundWhenNewMsg.Text" xml:space="preserve">
+    <value>Play a sound for the visitor when a new message is received</value>
+  </data>
+  <data name="Priority.Text" xml:space="preserve">
+    <value>Priority</value>
+  </data>
+  <data name="Referrer.Text" xml:space="preserve">
+    <value>Referrer</value>
+  </data>
+  <data name="RequireVisitorsForm.Text" xml:space="preserve">
+    <value>Require visitors to complete a form before starting a chat.</value>
+  </data>
+  <data name="Right.Text" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="Rotate.Text" xml:space="preserve">
+    <value>Rotate</value>
+  </data>
+  <data name="Save.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SelectUser.Text" xml:space="preserve">
+    <value>Select User </value>
+  </data>
+  <data name="SendEmailAfterChat.Text" xml:space="preserve">
+    <value>Automatically send the chat transcript to agent(s) email after the chat ends.</value>
+  </data>
+  <data name="SendEmailForOffline.Text" xml:space="preserve">
+    <value>Send email notification to agent(s) when visitors send an offline message</value>
+  </data>
+  <data name="SendMessage.Text" xml:space="preserve">
+    <value>Send Message</value>
+  </data>
+  <data name="Settings.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="ShowAvatars.Text" xml:space="preserve">
+    <value>Show Avatars</value>
+  </data>
+  <data name="ShowDekstopNotificationForIncoming.Text" xml:space="preserve">
+    <value>Show desktop notifications for incoming chats</value>
+  </data>
+  <data name="ShowDekstopNotificationForNewMsg.Text" xml:space="preserve">
+    <value>Show desktop notifications for new messages in open chats</value>
+  </data>
+  <data name="SimpleLive.Text" xml:space="preserve">
+    <value>Simple Live</value>
+  </data>
+  <data name="Small.Text" xml:space="preserve">
+    <value>Small</value>
+  </data>
+  <data name="SortBy.Text" xml:space="preserve">
+    <value>sort by</value>
+  </data>
+  <data name="SortByBrowser.Text" xml:space="preserve">
+    <value>Sort by Browser</value>
+  </data>
+  <data name="SortByCountry.Text" xml:space="preserve">
+    <value>Sort by Country</value>
+  </data>
+  <data name="SortByDateNewest.Text" xml:space="preserve">
+    <value>Sort by Date Newest First</value>
+  </data>
+  <data name="SortByDateOldest.Text" xml:space="preserve">
+    <value>Sort by Date Oldest First</value>
+  </data>
+  <data name="SpeechBubbles.Text" xml:space="preserve">
+    <value>Speech Bubbles</value>
+  </data>
+  <data name="StartChat.Text" xml:space="preserve">
+    <value>Start Chat</value>
+  </data>
+  <data name="ThemeColor.Text" xml:space="preserve">
+    <value>Theme Color</value>
+  </data>
+  <data name="Ticketing.Text" xml:space="preserve">
+    <value>Ticketing</value>
+  </data>
+  <data name="TicketingEnabled.Text" xml:space="preserve">
+    <value>Ticketing Enabled</value>
+  </data>
+  <data name="TitleColor.Text" xml:space="preserve">
+    <value>Title Color</value>
+  </data>
+  <data name="ToggleFullscreen.Text" xml:space="preserve">
+    <value>Toggle Fullscreen</value>
+  </data>
+  <data name="Top.Text" xml:space="preserve">
+    <value>Top</value>
+  </data>
+  <data name="TopTitle.Text" xml:space="preserve">
+    <value>Top Title</value>
+  </data>
+  <data name="TranscriptEmailTemplate.Text" xml:space="preserve">
+    <value>Transcript Email Template</value>
+  </data>
+  <data name="Update.Text" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UpdateAgent.Text" xml:space="preserve">
+    <value>Update Agent</value>
+  </data>
+  <data name="UpdateAgentMsg.Text" xml:space="preserve">
+    <value>Agent has been updated successfully.</value>
+  </data>
+  <data name="UpdateDepartment.Text" xml:space="preserve">
+    <value>Update Department</value>
+  </data>
+  <data name="UpdateDepartmentMsg.Text" xml:space="preserve">
+    <value>Department has been updated successfully.</value>
+  </data>
+  <data name="UseHtml.Text" xml:space="preserve">
+    <value>Use Html</value>
+  </data>
+  <data name="VerticalPosition.Text" xml:space="preserve">
+    <value>Vertical Position</value>
+  </data>
+  <data name="Viewing.Text" xml:space="preserve">
+    <value>Viewing</value>
+  </data>
+  <data name="Visitor.Text" xml:space="preserve">
+    <value>Visitor</value>
+  </data>
+  <data name="VisitorIsChatting.Text" xml:space="preserve">
+    <value>Is Chatting...</value>
+  </data>
+  <data name="VisitorList.Text" xml:space="preserve">
+    <value>Visitor List</value>
+  </data>
+  <data name="VisitorsEnabledAlert.Text" xml:space="preserve">
+    <value>Visitors Online is not enabled! for tracking the visitors it must enabled!</value>
+  </data>
+  <data name="VisitorsOnlineEnabled.Text" xml:space="preserve">
+    <value>Visitors Online Enabled</value>
+  </data>
+  <data name="WidgetPosition.Text" xml:space="preserve">
+    <value>Widget Position</value>
+  </data>
+  <data name="WidgetSettings.Help" xml:space="preserve">
+    <value>Customize live chat widget and minimize button</value>
+  </data>
+  <data name="WidgetSettings.Text" xml:space="preserve">
+    <value>Widget Settings</value>
+  </data>
+  <data name="WidgetSettingsUpdatedAlert.Text" xml:space="preserve">
+    <value>Widget Settings is not enabled!</value>
+  </data>
+  <data name="WindowSize.Text" xml:space="preserve">
+    <value>Window Size</value>
+  </data>
+  <data name="Yes.Text" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="YouCanUseHtml.Text" xml:space="preserve">
+    <value>You can use html and css.</value>
+  </data>
+  <data name="VisitorIsTyping.Text" xml:space="preserve">
+    <value>Visitor is typing...</value>
+  </data>
+</root>

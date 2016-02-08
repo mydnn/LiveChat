@@ -1,0 +1,281 @@
+﻿@using DotNetNuke.Web.Mvc.Helpers
+@using DotNetNuke.Framework.JavaScriptLibraries
+@using DotNetNuke.Web.Client.ClientResourceManagement
+@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<MyDnn.Modules.Support.LiveChat.ViewModels.ModuleConfigStatusViewModel>
+
+@{
+    //Styles
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/Styles/style.css", DotNetNuke.Web.Client.FileOrder.Css.SkinCss);
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/Styles/animate.min.css");
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/Styles/material-design-iconic-font.min.css");
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/Styles/socicon.min.css");
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/Styles/custom.css");
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/Styles/livechat-agent.css");
+
+    //Bootstrap
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/bootstrap/bootstrap.min.js");
+
+    //AngularJS & Libraries
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/angularjs/angular.min.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/angularjs/angular-route.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/angularjs/angular-resource.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/angularjs/angular-sanitize.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/angularjs/angular-animate.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/angularjs/loading-bar.min.js");
+
+    //Ui Bootstrap For Angularjs
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/ui-bootstrap/ui-bootstrap-tpls.min.js");
+
+    //sweetalert
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/angular-farbtastic/farbtastic.css");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/angular-farbtastic/angular-farbtastic.js");
+
+    //moment js
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/moment.js/moment.min.js");
+
+    //Jquery Plugins
+
+    //sweetalert
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/sweetalert/sweetalert.min.css");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/sweetalert/sweetalert.min.js");
+
+    //nicescroll
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/jquery.nicescroll/jquery.nicescroll.min.js");
+
+    //jquery jscrollpane
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/jquery.jscrollpane/jquery.jscrollpane.min.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/jquery.jscrollpane/jquery.mousewheel.js");
+
+    //bootstrap-growl
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/bootstrap-growl/bootstrap-growl.min.js");
+
+    //waves material effect
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/waves/waves.min.js");
+
+    //chosen jquery
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/chosen.jquery/chosen.jquery.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/chosen.jquery/chosen.js");
+
+    //jquery numeric
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/jquery.numeric/jquery.numeric.js");
+
+    //bootstrap-select
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/bootstrap-select/bootstrap-select.min.css");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/bootstrap-select/bootstrap-select.min.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/bootstrap-select/angular-bootstrap-select.min.js");
+
+    //ua-parser user agent
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/ua-parser/ua-parser.min.js");
+
+    //SignalR
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/signalr/jquery.signalR-2.1.0.min.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/signalr/hubs");
+
+    //Custom AngularJS Services 
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientApp/Services/ng-mydnn-services.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientApp/Services/signalr.service.js");
+
+    //Custom AngularJS App
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientApp/app.js");
+
+    ////Custom AngularJS Controllers
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientApp/Controllers/home-controller.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientApp/Controllers/visitorlist-controller.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientApp/Controllers/history-controller.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientApp/Controllers/department-controller.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientApp/Controllers/agent-controller.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientApp/Controllers/setting-controller.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientApp/Controllers/widgetsetting-controller.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientApp/Controllers/livechat-agent-controller.js");
+
+    //bootstrap datetime picker
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/bootstrap-datetimepicker/datetimepickerDirective.js");
+
+    //Admin Panel UI Custom Scripts
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/Scripts/functions.js");    
+}
+
+@{
+    <div class="custom-fix-alerts">
+        @if (!Model.VisitorsOnlineEnabled)
+        {
+            <a href="#settings" role="alert" class="alert alert-danger alert-dismissible m-b-10">
+                <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span></button>
+                @Dnn.LocalizeString("VisitorsEnabledAlert")
+            </a>
+        }
+        @if (!Model.LiveChatEnabled)
+        {
+            <a href="#settings" role="alert" class="alert alert-danger alert-dismissible">
+                <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span></button>
+                @Dnn.LocalizeString("VisitorsEnabledAlert")
+            </a>
+        }
+        @if (!Model.BasicSettingsUpdated)
+        {
+            <a href="#settings" role="alert" class="alert alert-warning alert-dismissible">
+                <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span></button>
+                @Dnn.LocalizeString("BasicSettingsUpdatedAlert")
+            </a>
+        }
+        @if (!Model.WidgetSettingsUpdated)
+        {
+            <a href="#widgetsettings" role="alert" class="alert alert-warning alert-dismissible">
+                <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span></button>
+                @Dnn.LocalizeString("BasicSettingsUpdatedAlert")
+            </a>
+        }
+    </div>
+}
+
+<div class="body" ng-app="MyDnnSupportApp" ng-controller="adminPanelController">
+    <div id="header">
+        <ul class="header-inner">
+            <li id="menu-trigger" data-trigger="#sidebar">
+                <div class="line-wrap">
+                    <div class="line top"></div>
+                    <div class="line center"></div>
+                    <div class="line bottom"></div>
+                </div>
+            </li>
+            <li class="logo hidden-xs">
+                <a href="#">@Dnn.LocalizeString("MyDnnSupport")</a>
+            </li>
+            <li class="pull-right">
+                <ul class="top-menu">
+                    <li id="toggle-width">
+                        <div class="toggle-switch">
+                            <input id="tw-switch" hidden="hidden" type="checkbox" checked="checked" />
+                            <label for="tw-switch" class="ts-helper"></label>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="tm-settings" href=""></a>
+                        <ul class="dropdown-menu dm-icon pull-right">
+                            <li>
+                                <a data-action="fullscreen" href=""><i class="md md-fullscreen"></i>@Dnn.LocalizeString("ToggleFullscreen")</a>
+                            </li>
+                            <li>
+                                <a onclick="javascript:sessionStorage.clear();location.reload();" href="javascript:void(0);"><i class="md md-delete"></i>@Dnn.LocalizeString("ClearSessionStorage")</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="hidden-xs" id="log-trigger" data-trigger="#action-center">
+                        <a class="tm-log" href="javascript:void(0)"></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div id="main">
+        <aside id="sidebar">
+            <div class="sidebar-inner">
+                <div class="si-inner">
+                    <div class="profile-menu">
+                        <a href="">
+                            <div class="profile-pic">
+                                <img src='@Dnn.DnnPage.ResolveUrl(string.Format("~/dnnimagehandler.ashx?mode=profilepic&userid={0}&w=120", Dnn.User.UserID))' alt="">
+                            </div>
+                            <div class="profile-info">
+                                @Dnn.User.DisplayName
+                                <i class="md md-arrow-drop-down"></i>
+                            </div>
+                        </a>
+                        <ul class="main-menu">
+                            <li>
+                                <a href="@DotNetNuke.Common.Globals.NavigateURL()"><i class="md md-history"></i>@Dnn.LocalizeString("Exit")</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="main-menu">
+                        <li ng-class="{'active':activeMenu.Parent=='visitorlist'}"><a href="#visitorlist"><i class="md md-visibility"></i>@Dnn.LocalizeString("VisitorList")</a></li>
+                        <li ng-class="{'active':activeMenu.Parent=='history'}"><a href="#history"><i class="md md-history"></i>@Dnn.LocalizeString("History")</a></li>
+                        <li class="sub-menu" ng-class="{'active':activeMenu.Parent=='manage'}">
+                            <a href=""><i class="md md-view-list"></i>@Dnn.LocalizeString("Manage")</a>
+                            <ul>
+                                <li><a href="#departments" ng-class="{'active':activeMenu.Parent=='manage' && activeMenu.Child=='departments'}">@Dnn.LocalizeString("Departments")</a></li>
+                                <li><a href="#agents" ng-class="{'active':activeMenu.Parent=='manage' && activeMenu.Child=='agents'}">@Dnn.LocalizeString("Agents")</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu" ng-class="{'active':activeMenu.Parent=='settings'}">
+                            <a href=""><i class="md md-settings"></i>@Dnn.LocalizeString("Settings")</a>
+                            <ul>
+                                <li><a href="#settings" ng-class="{'active':activeMenu.Parent=='settings' && activeMenu.Child=='basic'}">@Dnn.LocalizeString("BasicSettings")</a></li>
+                                <li><a href="#widgetsettings" ng-class="{'active':activeMenu.Parent=='settings' && activeMenu.Child=='widget'}">@Dnn.LocalizeString("WidgetSettings")</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="@DotNetNuke.Common.Globals.NavigateURL()"><i class="md md-exit-to-app"></i>@Dnn.LocalizeString("Exit")</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <aside id="action-center"></aside>
+        <section id="content">
+            <div class="container" ng-view></div>
+            <div ng-controller="livechatAgentController" ng-include="'livechats.html'"></div>
+        </section>
+    </div>
+
+    <script type="text/ng-template" id="home.html">
+        @{Html.RenderPartial("_Home");}
+    </script>
+
+    <script type="text/ng-template" id="visitorlist.html">
+        @{Html.RenderPartial("_VisitorList");}
+    </script>
+
+    <script type="text/ng-template" id="history.html">
+        @{Html.RenderPartial("_History");}
+    </script>
+
+    <script type="text/ng-template" id="departments.html">
+        @{Html.RenderPartial("_Departments");}
+    </script>
+
+    <script type="text/ng-template" id="agents.html">
+        @{Html.RenderPartial("_Agents");}
+    </script>
+
+    <script type="text/ng-template" id="basicsettings.html">
+        @{Html.RenderPartial("_BasicSettings");}
+    </script>
+
+    <script type="text/ng-template" id="widgetsettings.html">
+        @{Html.RenderPartial("_WidgetSettings");}
+    </script>
+
+    <script type="text/ng-template" id="livechats.html">
+        @{Html.RenderPartial("_LiveChats");}
+    </script>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        var siteRoot = '@Dnn.DnnPage.ResolveUrl("~/")';
+        function mydnnGetServiceRoot(moduleName) {
+            var serviceRoot = siteRoot;
+            serviceRoot += "DesktopModules/" + moduleName + "/API/";
+            return serviceRoot;
+        };
+
+        var mydnnSupportLiveChat = {
+            ModuleID: parseInt('@Model.ModuleID'),
+            TabID: parseInt('@Model.TabID'),
+            SiteRoot: siteRoot,
+            CurrentCulture: '@Dnn.PortalSettings.CultureCode',
+            PortalID: parseInt('@Dnn.PortalSettings.PortalId'),
+            SharedResources: {
+                @{
+                    foreach (System.Collections.DictionaryEntry item in MyDnn.Modules.Support.LiveChat.Components.Common.Localization.Instance.GetResources(Dnn.DnnPage.ResolveUrl("~/DesktopModules/MVC/MyDnnSupport/LiveChat/App_LocalResources/SharedResources"), Dnn.PortalSettings.CultureCode))
+                    {
+	                	@: '@item.Key': '@item.Value',
+                                                                                                                    }
+                }
+            }
+        }
+    </script>
+}

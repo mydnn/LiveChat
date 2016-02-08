@@ -1,0 +1,108 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage
+
+<div class="card visitors">
+    <div class="card-header ch-alt pd-tb-15">
+        <h2 class="m-b-10"><i class="row-icon md md-visibility"></i>&nbsp;@Dnn.LocalizeString("VisitorList")</h2>
+        <div class="cust-sel">
+            <select class="form-control" ng-model="sortModel">
+                <option value="1">@Dnn.LocalizeString("SortByDateOldest")</option>
+                <option value="2">@Dnn.LocalizeString("SortByDateNewest")</option>
+                <option value="3">@Dnn.LocalizeString("SortByCountry")</option>
+                <option value="4">@Dnn.LocalizeString("SortByBrowser")</option>
+            </select>
+        </div>
+        <ul class="actions">
+            <li>
+                <a href="" onclick="location.reload();">
+                    <i class="md md-cached"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body pd-tb-5">
+        <h3 class="list-title" ng-show="incomingLiveChats.length">@Dnn.LocalizeString("IncomingChats")</h3>
+        <table class="table" ng-show="incomingLiveChats.length">
+            <thead>
+                <tr>
+                    <th>@Dnn.LocalizeString("Visitor")</th>
+                    <th>@Dnn.LocalizeString("Online")</th>
+                    <th>@Dnn.LocalizeString("Message")</th>
+                    <th class="no-mobile no-tablet">@Dnn.LocalizeString("Viewing")</th>
+                    <th class="no-mobile">@Dnn.LocalizeString("Referrer")</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="visitor in incomingLiveChats">
+                    <td class="w-300">
+                        <span class="visitor-avatar">
+                            <img ng-src="{{visitor.Avatar}}" alt="" />
+                        </span>
+                        <span class="visitor-name">
+                            <span>{{visitor.DisplayName}}</span>
+                        </span>
+                        <img class="visitor-country" ng-src="@Dnn.DnnPage.ResolveUrl("~/")DesktopModules/MVC/MyDnnSupport/LiveChat/Styles/Images/flags/{{visitor.Location.country_code}}.png" data-toggle="tooltip" data-placement="bottom"
+                            title="{{visitor.Location.city}}, {{visitor.Location.region_name}}, {{visitor.Location.country_name}}" alt="" />
+                        <span class="visitor-os {{visitor.UserAgentData.os.name}}" data-toggle="tooltip" data-placement="bottom"
+                            title="{{visitor.UserAgentData.os.name}} {{visitor.UserAgentData.os.version}}"></span>
+                        <span class="visitor-browser {{visitor.UserAgentData.browser.name}}" data-toggle="tooltip" data-placement="bottom"
+                            title="{{visitor.UserAgentData.browser.name}} {{visitor.UserAgentData.browser.version}}"></span>
+                    </td>
+                    <td>{{visitor.OnlineTime}}</td>
+                    <td>{{visitor.Message}}</td>
+                    <td class="no-mobile no-tablet">{{visitor.LastURL}}</td>
+                    <td class="no-mobile">{{visitor.ReferrerURL}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="7"></th>
+                </tr>
+            </tfoot>
+        </table>
+        <h3 class="list-title" ng-show="visitors.length>incomingLiveChats.length">@Dnn.LocalizeString("ActiveVisitors")</h3>
+        <table class="table" ng-show="visitors.length>incomingLiveChats.length">
+            <thead>
+                <tr>
+                    <th>@Dnn.LocalizeString("Visitor")</th>
+                    <th>@Dnn.LocalizeString("Online")</th>
+                    <th class="no-mobile no-tablet">@Dnn.LocalizeString("Viewing")</th>
+                    <th class="no-mobile">@Dnn.LocalizeString("Referrer")</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="visitor in visitors" ng-show="!visitor.IncomingLiveChat">
+                    <td class="w-300">
+                        <span class="visitor-avatar">
+                            <img ng-src="{{visitor.Avatar}}" alt="" />
+                        </span>
+                        <span class="visitor-name">
+                            <span>{{visitor.DisplayName}}</span>
+                        </span>
+                        <img class="visitor-country" ng-src="@Dnn.DnnPage.ResolveUrl("~/")DesktopModules/MVC/MyDnnSupport/LiveChat/Styles/Images/flags/{{visitor.Location.country_code}}.png" data-toggle="tooltip" data-placement="bottom"
+                            title="{{visitor.Location.city}}, {{visitor.Location.region_name}}, {{visitor.Location.country_name}}" alt="" />
+                        <span class="visitor-os {{visitor.UserAgentData.os.name}}" data-toggle="tooltip" data-placement="bottom"
+                            title="{{visitor.UserAgentData.os.name}} {{visitor.UserAgentData.os.version}}"></span>
+                        <span class="visitor-browser {{visitor.UserAgentData.browser.name}}" data-toggle="tooltip" data-placement="bottom"
+                            title="{{visitor.UserAgentData.browser.name}} {{visitor.UserAgentData.browser.version}}"></span>
+                    </td>
+                    <td>{{visitor.OnlineTime}}</td>
+                    <td class="visitor-url no-mobile no-tablet" title="{{visitor.LastURL}}">
+                        <span class="m-w-300">{{visitor.LastURL}}</span>
+                    </td>
+                    <td class="visitor-url no-mobile" title="{{visitor.ReferrerURL}}">
+                        <span class="m-w-200">{{visitor.ReferrerURL}}</span>
+                    </td>
+                    <td class="visitor-ischatting" ng-show="visitor.CurrentLiveChat">
+                        <span>@Dnn.LocalizeString("VisitorIsChatting")</span>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="6"></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+

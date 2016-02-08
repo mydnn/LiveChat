@@ -1,0 +1,27 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage
+
+@{
+    var moduleId = Dnn.ModuleContext.ModuleId;
+}
+
+<div>
+    @{
+        string newUrl = string.Empty;
+        if (Dnn.PortalSettings.EnablePopUps)
+        {
+            newUrl = "?popUp=true";
+        }
+        else
+        {
+            newUrl = "?SkinSrc=[G]Skins%2f_default%2fNo+Skin&ContainerSrc=[G]Containers%2f_default%2fNo+Container";
+        }
+    }
+
+    @if (DotNetNuke.Security.Permissions.ModulePermissionController.CanEditModuleContent(Dnn.ActiveModule))
+    {
+
+        <div class="buttons">
+            <a class="dnnPrimaryAction" href="@Url.Action("AdminPanel", "AdminPanel", new { ctl = "AdminPanel" })@newUrl">@Dnn.LocalizeString("AdminPanel")</a>
+        </div>
+    }
+</div>

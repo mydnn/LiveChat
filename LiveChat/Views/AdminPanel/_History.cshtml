@@ -1,0 +1,205 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage
+
+<div class="card history">
+    <!-- Begin: Historys Panel Header -->
+    <div class="card-header ch-alt pd-tb-15 clearfix">
+        <h2 class="m-b-10"><i class="row-icon md md-history"></i>&nbsp;@Dnn.LocalizeString("Historys")</h2>
+        <ul class="custom-tabs pull-left m-b-10 m-r-10">
+            <li ng-click="onTypeTabClick('0')" ng-class="{'active':filters.Type==0}">@Dnn.LocalizeString("All")</li>
+            <li ng-click="onTypeTabClick('1')" ng-class="{'active':filters.Type==1}">@Dnn.LocalizeString("Chat")</li>
+            <li ng-click="onTypeTabClick('2')" ng-class="{'active':filters.Type==2}">@Dnn.LocalizeString("Offline")</li>
+        </ul>
+        <div class="cust-sel pull-left m-r-10">
+            <select chosen multiple ng-model="filters.Departments" ng-options="department.DepartmentName for department in departments"
+                data-placeholder="@Dnn.LocalizeString("FilterByDepartments")" width="200">
+            </select>
+        </div>
+        <div class="cust-sel pull-left m-r-10">
+            <select chosen multiple ng-disabled="filters.Type==2" ng-model="filters.Agents" ng-options="agent.DisplayName for agent in agents"
+                data-placeholder="@Dnn.LocalizeString("FilterByAgents")" width="200">
+            </select>
+        </div>
+        <div class="search-group pull-left m-r-10">
+            <input type="text" ng-model="filters.VisitorEmail" placeholder="@Dnn.LocalizeString("FilterByVisitorEmail")" ng-model="filterModel">
+            <i class="md md-search"></i>
+        </div>
+        <button type="button" class="btn waves-effect waves-float no-box-shadow b-radius-5 outlining p-0 p-l-5 p-r-5" ng-click="onSearchToggleClick ()"
+                data-original-title="Tooltip on top" data-placement="top" data-toggle="tooltip" title="@Dnn.LocalizeString("AdvancedSearch")">
+            <i class="md md-expand-more font-20"></i>
+            <i class="md md-expand-less font-20 hidden"></i>
+        </button>
+        <div class="advanced-search">
+            <hr class="clearfix m-b-10" />
+            <div class="search-group dropdown pull-left m-r-10">
+                <input type='text' d-datepicker ng-model="filters.FromDate" data-toggle="dropdown" placeholder="@Dnn.LocalizeString("FromDate")">
+                <i class="md md-event"></i>
+            </div>
+            <div class="search-group dropdown pull-left m-r-10">
+                <input type='text' d-datepicker ng-model="filters.ToDate" data-toggle="dropdown" placeholder="@Dnn.LocalizeString("ToDate")">
+                <i class="md md-event"></i>
+            </div>
+            <div class="pull-left b-p m-r-10">
+                <div data-ts-color="green" class="pull-left toggle-switch m-r-15">
+                    <label class="ts-label" for="rating">@Dnn.LocalizeString("Rating")</label>
+                    <input type="checkbox" hidden="hidden" id="rating" ng-model="filterByRating">
+                    <label class="ts-helper" for="rating"></label>
+                </div>
+                <div class="pull-left checkbox m-r-10 m-t-0 m-b-0">
+                    <label>
+                        <input type="checkbox" ng-disabled="!filterByRating" ng-model="filters.GoodRate" />
+                        <i class="input-helper"></i>
+                        @Dnn.LocalizeString("Good")
+                    </label>
+                </div>
+                <div class="pull-left checkbox m-t-0 m-b-0">
+                    <label>
+                        <input type="checkbox" ng-disabled="!filterByRating" ng-model="filters.BadRate" />
+                        <i class="input-helper"></i>
+                        @Dnn.LocalizeString("Bad")
+                    </label>
+                </div>
+            </div>
+        </div>
+        <ul class="actions">
+            <li>
+                <a href="" onclick="location.reload();">
+                    <i class="md md-cached"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- End: Historys Panel Header -->
+    <div class="card-body clearfix">
+        <!-- Begin: List -->
+        <div class="p-0" ng-class="{'col-sm-6':selectedLiveChat.LiveChatID}">
+            <table class="table m-b-0 f-12" id="tblHistorys">
+                <thead>
+                    <tr>
+                        <td class="px40">
+                            <div class="checkbox m-0">
+                                <label>
+                                    <input type="checkbox" ng-model="history.AllSelected" ng-change="onSelectLiveChatChange('true')" />
+                                    <i class="input-helper"></i>
+                                </label>
+                            </div>
+                        </td>
+                        <th>@Dnn.LocalizeString("Name")</th>
+                        <th>@Dnn.LocalizeString("Departments")</th>
+                        <th>@Dnn.LocalizeString("Agents")</th>
+                        <th>@Dnn.LocalizeString("Date")</th>
+                        <th ng-show="!selectedLiveChat.LiveChatID">@Dnn.LocalizeString("Messages")</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="livechat in history.LiveChats" ng-click="onRowLiveChatClick(livechat.LiveChatID)" ng-class="{'active':livechat.LiveChatID==selectedLiveChat.LiveChatID}">
+                        <td class="w-50">
+                            <div class="checkbox m-0">
+                                <label>
+                                    <input type="checkbox" ng-model="livechat.Selected" ng-change="onSelectLiveChatChange()" />
+                                    <i class="input-helper"></i>
+                                </label>
+                            </div>
+                        </td>
+                        <td class="w-120">{{livechat.Visitor.DisplayName}}</td>
+                        <td class="w-100"><span class="comma-after" ng-repeat="department in livechat.Departments">{{department.DepartmentName}}</span></td>
+                        <td class="w-150"><span class="comma-after" ng-repeat="agent in livechat.Agents">{{agent.DisplayName}}</span></td>
+                        <td class="w-100">{{livechat.CreateDate| cmdate:'MMMM D YY, h:mm a'}}</td>
+                        <td ng-show="!selectedLiveChat.LiveChatID">{{livechat.Message}}</td>
+                    </tr>
+                    <tr ng-show="!history.LiveChats.length">
+                        <td colspan="6" class="text-center c-gray ">
+                            @Dnn.LocalizeString("NoMessages")
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6">
+                            <div class="row" ng-show="history.LiveChats.length">
+                                <div class="p-l-15" ng-class="{'col-sm-6':!selectedLiveChat.LiveChatID}">
+                                    <nav class="pull-left">
+                                        <ul class="pagination m-t-10 m-b-0">
+                                            <li ng-class="{'disabled': !history.Paging.HasPreviousPage}" ng-click="onPageClick(0,'prev')">
+                                                <a class="button" href="javascript:void(0);"><i class="md md-chevron-left"></i></a>
+                                            </li>
+                                            <li ng-repeat="page in history.Paging.Pages track by $index" ng-class="{'active': $index==history.Paging.PageIndex}" ng-click="onPageClick($index)">
+                                                <a class="button" href="javascript:void(0);">{{$index+1}}</a>
+                                            </li>
+                                            <li ng-class="{'disabled': !history.Paging.HasNextPage}" ng-click="onPageClick(0,'next')">
+                                                <a class="button" href="javascript:void(0);"><i class="md md-chevron-right"></i></a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <div class="col-sm-6 infoBar m-t-15">
+                                    <div class="pull-left drop-down-wrapper w-150" ng-show="selectedItems.length">
+                                        <select ng-model="action" ng-change="onActionChange()">
+                                            <option value="">@Dnn.LocalizeString("SelectAction")</option>
+                                            <option value="delete">@Dnn.LocalizeString("Delete")</option>
+                                        </select>
+                                    </div>
+                                    <div class="pull-right" ng-show="!selectedLiveChat.LiveChatID">
+                                        <div class="btn-group m-l-20 pull-right">
+                                            <button class="btn btn-default waves-effect" ng-click="onChangePageSizeClick(count)" ng-class="{'active':count==history.Paging.PageSize}" type="button" ng-repeat="count in [10,25,50,100]">
+                                                <span>{{count}}</span>
+                                            </button>
+                                        </div>
+                                        <div class="infos p-10 pull-right">@Dnn.LocalizeString("Messages") {{history.Paging.PageIndex*history.Paging.PageSize+1}} @Dnn.LocalizeString("To") {{history.Paging.PageIndex*history.Paging.PageSize+history.LiveChats.length}} @Dnn.LocalizeString("Of") {{history.Paging.TotalCount}} </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!-- End: List -->
+        <div class="col-sm-6 p-0 selected-livechat" ng-show="selectedLiveChat.LiveChatID">
+            <div class="header-info">
+                <ul class="custom-tabs pull-left m-b-10 m-r-10">
+                    <li ng-click="onTranscriptTabClick('0')" ng-class="{'active':transcriptTab}">@Dnn.LocalizeString("Transcript")</li>
+                    <li ng-click="onTranscriptTabClick('1')" ng-class="{'active':!transcriptTab}">@Dnn.LocalizeString("UserInfo")</li>
+                </ul>
+                <button type="button" class="btn btn-default bgm-gray btn-icon waves-effect waves-circle waves-float close-livechat no-box-shadow" ng-click="onCloseTranscriptClick()">
+                    <i class="md md-close"></i>
+                </button>
+                <hr class="m-t-10 m-b-10" />
+                <div class="transcript" ng-show="transcriptTab">
+                    <div class="col-md-4 c-gray m-b-5">Rating</div>
+                    <div class="col-md-8">Good</div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-4 c-gray m-b-5">Comment</div>
+                    <div class="col-md-8">ok bod!</div>
+                    <div class="clearfix m-b-5 split"></div>
+                    <ul class="messages">
+                        <li ng-repeat="message in selectedLiveChat.Messages" class="message-body split message-{{message.SentBy}}">
+                            <span class="sender m-b-5" ng-show="message.SentBy">{{message.SenderDisplayName}}</span>
+                            <p class="message">{{message.Message}}</p>
+                            <span class="time">{{message.Time}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="userinfo" ng-show="!transcriptTab">
+                    <span class="visitor-avatar">
+                        <img ng-src="{{selectedLiveChat.Visitor.Avatar}}" ng-show="selectedLiveChat.Visitor.UserID" />
+                    </span>
+                    <span class="visitor-displayname">{{selectedLiveChat.Visitor.DisplayName}}</span>
+                    <span class="visitor-email">{{selectedLiveChat.Visitor.Email}}</span>
+                    <div class="clear"></div>
+                    <div class="sideinfo additional-info">
+                        <h5>@Dnn.LocalizeString("Location")</h5>
+                        <span class="val">{{selectedLiveChat.Visitor.Location.city}}, {{selectedLiveChat.Visitor.Location.region_name}}, {{selectedLiveChat.Visitor.Location.country_name}}</span>
+                        <h5>@Dnn.LocalizeString("Browser")</h5>
+                        <span class="val">{{selectedLiveChat.Visitor.UserAgentData.browser.name}} {{selectedLiveChat.Visitor.UserAgentData.browser.version}}</span>
+                        <h5>@Dnn.LocalizeString("Platform")</h5>
+                        <span class="val">{{selectedLiveChat.Visitor.UserAgentData.os.name}} {{selectedLiveChat.Visitor.UserAgentData.os.version}}</span>
+                        <h5>@Dnn.LocalizeString("IpAddress")</h5>
+                        <span class="val">{{selectedLiveChat.Visitor.IP}}</span>
+                        <h5>@Dnn.LocalizeString("UserAgent")</h5>
+                        <span class="val">{{selectedLiveChat.Visitor.UserAgent}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

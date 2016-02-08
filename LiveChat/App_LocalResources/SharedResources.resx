@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Actions.Text" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="AddAgent.Text" xml:space="preserve">
+    <value>Add Agent</value>
+  </data>
+  <data name="AddAgentMsg.Text" xml:space="preserve">
+    <value>Agent has been created successfully.</value>
+  </data>
+  <data name="AddDepartment.Text" xml:space="preserve">
+    <value>Add Department</value>
+  </data>
+  <data name="AddDepartmentMsg.Text" xml:space="preserve">
+    <value>Department has been created successfully.</value>
+  </data>
+  <data name="AddNewAgent.Text" xml:space="preserve">
+    <value>Add New Agent</value>
+  </data>
+  <data name="AddNewDepartment.Text" xml:space="preserve">
+    <value>Add New Department</value>
+  </data>
+  <data name="AdvancedSearch.Text" xml:space="preserve">
+    <value>Advanced Search</value>
+  </data>
+  <data name="AfterSendOfflineMessage.Text" xml:space="preserve">
+    <value>Thanks for the message! We'll get back to you as soon as we can.</value>
+  </data>
+  <data name="AgentHasOffline.Text" xml:space="preserve">
+    <value>the agent has gone offline.</value>
+  </data>
+  <data name="Agents.Text" xml:space="preserve">
+    <value>Agent(s)</value>
+  </data>
+  <data name="All.Text" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Anonymous.Text" xml:space="preserve">
+    <value>Anonymous</value>
+  </data>
+  <data name="AreYouSure.Text" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="AskUs.Text" xml:space="preserve">
+    <value>Ask us anything</value>
+  </data>
+  <data name="Bad.Text" xml:space="preserve">
+    <value>Bad</value>
+  </data>
+  <data name="BanVisitor.Text" xml:space="preserve">
+    <value>Ban Visitor</value>
+  </data>
+  <data name="Browser.Text" xml:space="preserve">
+    <value>Browser</value>
+  </data>
+  <data name="Cancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Chat.Text" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="ChatRatedBad.Text" xml:space="preserve">
+    <value>Chat rated Bad</value>
+  </data>
+  <data name="ChatRatedGood.Text" xml:space="preserve">
+    <value>Chat rated Good</value>
+  </data>
+  <data name="ChatRatingRemoved.Text" xml:space="preserve">
+    <value>Chat rating removed</value>
+  </data>
+  <data name="ChatStarted.Text" xml:space="preserve">
+    <value>Chat started</value>
+  </data>
+  <data name="ChatTranscript.Text" xml:space="preserve">
+    <value>Chat Transcript</value>
+  </data>
+  <data name="CurrentChat.Text" xml:space="preserve">
+    <value>Current Chat</value>
+  </data>
+  <data name="Date.Text" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteAgentConfirm.Text" xml:space="preserve">
+    <value>After deleted agent, history is not deleted</value>
+  </data>
+  <data name="DeleteAgentMsg.Text" xml:space="preserve">
+    <value>Agent has been removed successfully.</value>
+  </data>
+  <data name="DeleteDepartmentConfirm.Text" xml:space="preserve">
+    <value>If the department have agents you can not delete department</value>
+  </data>
+  <data name="DeleteDepartmentError.Text" xml:space="preserve">
+    <value>You can not removed department!</value>
+  </data>
+  <data name="DeleteDepartmentMsg.Text" xml:space="preserve">
+    <value>Department has been removed successfully.</value>
+  </data>
+  <data name="Department.Text" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="Departments.Text" xml:space="preserve">
+    <value>Department(s)</value>
+  </data>
+  <data name="Detectedlanguage.Text" xml:space="preserve">
+    <value>Detected language</value>
+  </data>
+  <data name="Disconnected.Text" xml:space="preserve">
+    <value>Disconnect</value>
+  </data>
+  <data name="Dismiss.Text" xml:space="preserve">
+    <value>Dismiss</value>
+  </data>
+  <data name="Done.Text" xml:space="preserve">
+    <value>Done!</value>
+  </data>
+  <data name="DuplicateAgent.Text" xml:space="preserve">
+    <value>{0} is exists.</value>
+  </data>
+  <data name="Edit.Text" xml:space="preserve">
+    <value>Edit </value>
+  </data>
+  <data name="Email.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailSentMessage.Text" xml:space="preserve">
+    <value>Email sent to</value>
+  </data>
+  <data name="EmailTranscript.Text" xml:space="preserve">
+    <value>Email Transcript</value>
+  </data>
+  <data name="EndChat.Help" xml:space="preserve">
+    <value>To minimize this chat instead, click the minimize button or outside the chat window</value>
+  </data>
+  <data name="EndChat.Text" xml:space="preserve">
+    <value>End Chat?</value>
+  </data>
+  <data name="EndLiveChat.Text" xml:space="preserve">
+    <value>End Chat</value>
+  </data>
+  <data name="Error.Text" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ExportTranscript.Text" xml:space="preserve">
+    <value>Export Transcript</value>
+  </data>
+  <data name="FilterByAgents.Text" xml:space="preserve">
+    <value>Filter by agents...</value>
+  </data>
+  <data name="FilterByDepartments.Text" xml:space="preserve">
+    <value>Filter by departments...</value>
+  </data>
+  <data name="FilterByVisitorEmail.Text" xml:space="preserve">
+    <value>Filter by visitor email...</value>
+  </data>
+  <data name="FromDate.Text" xml:space="preserve">
+    <value>From date...</value>
+  </data>
+  <data name="Good.Text" xml:space="preserve">
+    <value>Good</value>
+  </data>
+  <data name="Historys.Text" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Hour.Text" xml:space="preserve">
+    <value>Hour</value>
+  </data>
+  <data name="Hour.Text1" xml:space="preserve">
+    <value>hour</value>
+  </data>
+  <data name="HourMin.Text" xml:space="preserve">
+    <value>hr</value>
+  </data>
+  <data name="Hours.Text" xml:space="preserve">
+    <value>Hour(s)</value>
+  </data>
+  <data name="IntroduceYourself.Text" xml:space="preserve">
+    <value>Introduce Yourself</value>
+  </data>
+  <data name="IpAddress.Text" xml:space="preserve">
+    <value>IpAddress</value>
+  </data>
+  <data name="LiveChatRequest.Text" xml:space="preserve">
+    <value>Live Chat Request...</value>
+  </data>
+  <data name="LiveSupport.Text" xml:space="preserve">
+    <value>Live Support</value>
+  </data>
+  <data name="Location.Text" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Message.Text" xml:space="preserve">
+    <value>Message:</value>
+  </data>
+  <data name="MessagePlaceholder.Text" xml:space="preserve">
+    <value>Placeholder</value>
+  </data>
+  <data name="Messages.Text" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="Min.Text" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="MinButtonOffline.Text" xml:space="preserve">
+    <value>Offline</value>
+  </data>
+  <data name="MinButtonOnline.Text" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="Minute.Text" xml:space="preserve">
+    <value>Minute</value>
+  </data>
+  <data name="Minutes.Text" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
+  <data name="Name.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="No.Text" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoMessages.Text" xml:space="preserve">
+    <value>No Messages...</value>
+  </data>
+  <data name="NotNow.Text" xml:space="preserve">
+    <value>Not Now</value>
+  </data>
+  <data name="Of.Text" xml:space="preserve">
+    <value>of</value>
+  </data>
+  <data name="Offline.Text" xml:space="preserve">
+    <value>offline</value>
+  </data>
+  <data name="OfflineMessage.Text" xml:space="preserve">
+    <value>We are offline, but if you leave your message and contact details, we will try to get back to you =)</value>
+  </data>
+  <data name="OfflineMessageFrom.Text" xml:space="preserve">
+    <value>Offline Message from</value>
+  </data>
+  <data name="Online.Text" xml:space="preserve">
+    <value>online</value>
+  </data>
+  <data name="Options.Text" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="PastChats.Text" xml:space="preserve">
+    <value>Past Chats</value>
+  </data>
+  <data name="PastVisits.Text" xml:space="preserve">
+    <value>Past Visits</value>
+  </data>
+  <data name="Platform.Text" xml:space="preserve">
+    <value>Platform</value>
+  </data>
+  <data name="PleaseClickHere.Text" xml:space="preserve">
+    <value>You're listening to this chat. Click here to join the chat...</value>
+  </data>
+  <data name="PleaseWaitUntilAgentAnswer.Text" xml:space="preserve">
+    <value>Please wait until the agent connect to you...</value>
+  </data>
+  <data name="PreGreeting.Text" xml:space="preserve">
+    <value>Leave a question or comment and our agents will try to attend to you shortly =)</value>
+  </data>
+  <data name="PurgeHistory.Help" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="PurgeHistory.Text" xml:space="preserve">
+    <value>Purge History</value>
+  </data>
+  <data name="Rating.Text" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="Reconnecting.Text" xml:space="preserve">
+    <value>Reconnecting...</value>
+  </data>
+  <data name="Referrer.Text" xml:space="preserve">
+    <value>Referrer</value>
+  </data>
+  <data name="Resend.Text" xml:space="preserve">
+    <value>Resend</value>
+  </data>
+  <data name="SelectAction.Text" xml:space="preserve">
+    <value>Select action</value>
+  </data>
+  <data name="SelectDepartment.Text" xml:space="preserve">
+    <value>What we can help with?</value>
+  </data>
+  <data name="SendEmail.Text" xml:space="preserve">
+    <value>Send Email</value>
+  </data>
+  <data name="SendMessage.Text" xml:space="preserve">
+    <value>Send Message</value>
+  </data>
+  <data name="ServeRequests.Text" xml:space="preserve">
+    <value>Serve requests</value>
+  </data>
+  <data name="Showing.Text" xml:space="preserve">
+    <value>Showing</value>
+  </data>
+  <data name="StartChat.Text" xml:space="preserve">
+    <value>Start Chat</value>
+  </data>
+  <data name="Support.Text" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="TimeOnSite.Text" xml:space="preserve">
+    <value>Time On Site</value>
+  </data>
+  <data name="To.Text" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="ToDate.Text" xml:space="preserve">
+    <value>To date...</value>
+  </data>
+  <data name="Transcript.Text" xml:space="preserve">
+    <value>Transcript</value>
+  </data>
+  <data name="Translate.Text" xml:space="preserve">
+    <value>Translate</value>
+  </data>
+  <data name="TranslateChat.Text" xml:space="preserve">
+    <value>TranslateChat</value>
+  </data>
+  <data name="TypeYourMessage.Text" xml:space="preserve">
+    <value>Type your message here</value>
+  </data>
+  <data name="Unread.Text" xml:space="preserve">
+    <value>Unread</value>
+  </data>
+  <data name="UpdateAgent.Text" xml:space="preserve">
+    <value>Update Agent</value>
+  </data>
+  <data name="UpdateAgentMsg.Text" xml:space="preserve">
+    <value>Agent has been updated successfully.</value>
+  </data>
+  <data name="UpdateDepartment.Text" xml:space="preserve">
+    <value>Update Department</value>
+  </data>
+  <data name="UpdateDepartmentMsg.Text" xml:space="preserve">
+    <value>Department has been updated successfully.</value>
+  </data>
+  <data name="UserAgent.Text" xml:space="preserve">
+    <value>UserAgent</value>
+  </data>
+  <data name="UserInfo.Text" xml:space="preserve">
+    <value>User Info</value>
+  </data>
+  <data name="Viewing.Text" xml:space="preserve">
+    <value>Viewing: </value>
+  </data>
+  <data name="VisitorEndChatConfirm.Text" xml:space="preserve">
+    <value>Are you sure you want to end this chat?</value>
+  </data>
+  <data name="VisitorPath.Text" xml:space="preserve">
+    <value>Visitor Path</value>
+  </data>
+  <data name="WriteMessage.Text" xml:space="preserve">
+    <value>Write a message...</value>
+  </data>
+  <data name="Yes.Text" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+</root>

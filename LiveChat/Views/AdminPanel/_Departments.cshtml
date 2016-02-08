@@ -1,0 +1,157 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage
+
+<div class="card departments">
+    <!-- Begin: Departments Panel Header -->
+    <div class="card-header ch-alt pd-tb-15">
+        <h2 class="m-b-10"><i class="row-icon md md-domain"></i>&nbsp;@Dnn.LocalizeString("Departments")</h2>
+        <div class="input-group search-group">
+            <i class="md md-search"></i>
+            <input type="text" placeholder="@Dnn.LocalizeString("FindDepartment")" class="search-field data-list" ng-model="filterModel">
+            <i class="md md-clear mouse-handle" ng-click="onClearFilterClick();"></i>
+        </div>
+        <ul class="actions">
+            <li>
+                <a href="" onclick="location.reload();">
+                    <i class="md md-cached"></i>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a data-toggle="dropdown" href="" aria-expanded="false">
+                    <i class="md md-more-vert"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a href="" ng-click="editDepartment(undefined);">@Dnn.LocalizeString("AddNewDepartment")</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <button type="button" class="btn bgm-lightgreen btn-float waves-effect" ng-click="onEditDepartmentClick();"><i class="md md-add"></i></button>
+    </div>
+    <!-- End: Departments Panel Header -->
+
+    <div class="card-body pd-tb-5">
+        <!-- Begin: Department List -->
+        <table class="table" id="tblDepartments">
+            <thead>
+                <tr>
+                    <th class="px40"></th>
+                    <th>@Dnn.LocalizeString("Name")</th>
+                    <th class="w-200">@Dnn.LocalizeString("Description")</th>
+                    <th>@Dnn.LocalizeString("Agents")</th>
+                    <th>@Dnn.LocalizeString("Ticketing")</th>
+                    <th>@Dnn.LocalizeString("LiveChat")</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="department in departments">
+                    <td><i class="row-icon md md-domain"></i></td>
+                    <td>{{department.DepartmentName}}</td>
+                    <td>{{department.Description}}</td>
+                    <td>
+                        <span class="gray-color" ng-show="!department.Agents || !department.Agents.length">@Dnn.LocalizeString("NoAgents")</span>
+                        <ul class="department-agents">
+                            <li ng-repeat="agent in department.Agents">
+                                <span class="user-prfilepic-wrapper">
+                                    <img ng-src="{{agent.ProfilePic}}" />
+                                </span>
+                                <span class="user-displayname">{{agent.DisplayName}}</span>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="text-center">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="department.TicketEnabled" disabled="disabled">
+                                <i class="input-helper"></i>
+                            </label>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="department.LiveChatEnabled" disabled="disabled">
+                                <i class="input-helper"></i>
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default btn-icon waves-effect waves-circle waves-float mg-r-5 no-box-shadow wh-33" ng-click="onEditDepartmentClick(department);"><i class="md md-edit"></i></button>
+                        <button type="button" class="btn btn-default btn-icon waves-effect waves-circle waves-float mg-r-5 no-box-shadow wh-33" ng-click="onDeleteDepartmentClick(department.DepartmentID,$index);"><i class="md md-delete"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="6"></th>
+                </tr>
+            </tfoot>
+        </table>
+        <!-- End: Department List -->
+
+        <!-- Add / Edit Department (Bootstrap Modal) -->
+        <div class="modal fade" id="wnEditDepartment" tabindex="-1" role="dialog" aria-labelledby="wnTitleLabel" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="wnTitleLabel">{{winTitle}}</h4>
+                    </div>
+                    <div class="modal-body form-horizontal" ng-form="departmentForm">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div role="tooltip" class="tooltip right in right-position" ng-show="checkValidate && departmentForm.departmentName.$error.required">
+                                    <div class="tooltip-arrow"></div>
+                                    <div class="tooltip-inner">
+                                        @Dnn.LocalizeString("ErrorMessage")
+                                    </div>
+                                </div>
+                                <div class="fg-line">
+                                    <input type="text" class="form-control" name="departmentName" placeholder="@Dnn.LocalizeString("DepartmentName")" ng-model="department.DepartmentName" required focus-on="newItemAdded" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="fg-line">
+                                    <input type="text" class="form-control" placeholder="@Dnn.LocalizeString("Description")" ng-model="department.Description" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mg-b-10">
+                            <div class="col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="department.TicketEnabled" />
+                                        <i class="input-helper"></i>
+                                        @Dnn.LocalizeString("TicketingEnabled")
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mg-b-10">
+                            <div class="col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="department.LiveChatEnabled" />
+                                        <i class="input-helper"></i>
+                                        @Dnn.LocalizeString("LiveChatEnabled")
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click="onUpdateDepartmentClick();">
+                            <span ng-show="department.DepartmentID">@Dnn.LocalizeString("UpdateDepartment")</span> 
+                            <span ng-show="!department.DepartmentID">@Dnn.LocalizeString("AddDepartment")</span> 
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">@Dnn.LocalizeString("Cancel")</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End: Add / Edit Department -->
+    </div>
+</div>

@@ -1,0 +1,130 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage
+
+<div class="card basic-settings">
+    <!-- Begin: Settings Panel Header -->
+    <div class="card-header ch-alt pd-tb-15 clearfix">
+        <h2 class="m-b-10"><i class="md md-settings"></i>
+            &nbsp;@Dnn.LocalizeString("BasicSettings")
+            <small>@Dnn.LocalizeString("BasicSettings.Help")</small>
+        </h2>
+        <ul class="actions">
+            <li>
+                <a href="" onclick="location.reload();">
+                    <i class="md md-cached"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- End: Settings Panel Header -->
+    <div class="card-body card-padding">
+        <div class="row">
+            <div class="col-md-8 m-b-20 clearfix">
+                <div class="head">
+                    <h3><i class="md md-storage m-r-5"></i>@Dnn.LocalizeString("BasicSettings")</h3>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox m-b-15">
+                        <label>
+                            <input type="checkbox" ng-model="portalSettings.VisitorsOnlineEnabled">
+                            <i class="input-helper"></i>
+                            @Dnn.LocalizeString("VisitorsOnlineEnabled")
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox m-b-15">
+                        <label>
+                            <input type="checkbox" ng-model="portalSettings.LiveChatEnabled">
+                            <i class="input-helper"></i>
+                            @Dnn.LocalizeString("LiveChatEnabled")
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox m-b-15">
+                        <label>
+                            <input type="checkbox" ng-model="moduleSettings.PlaySoundWhenNewMsg">
+                            <i class="input-helper"></i>
+                            @Dnn.LocalizeString("PlaySoundWhenNewMsg")
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox m-b-15">
+                        <label>
+                            <input type="checkbox" ng-model="moduleSettings.ShowDekstopNotificationForIncoming">
+                            <i class="input-helper"></i>
+                            @Dnn.LocalizeString("ShowDekstopNotificationForIncoming")
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox m-b-15">
+                        <label>
+                            <input type="checkbox" ng-model="moduleSettings.ShowDekstopNotificationForNewMsg">
+                            <i class="input-helper"></i>
+                            @Dnn.LocalizeString("ShowDekstopNotificationForNewMsg")
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 m-b-20 clearfix">
+                <div class="head">
+                    <h3><i class="md md-refresh m-r-5"></i>@Dnn.LocalizeString("FunctionalitySettings")</h3>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox m-b-15">
+                        <p>@Dnn.LocalizeString("AgentsViewPermission")</p>
+                        <label class="radio radio-inline m-r-20">
+                            <input type="radio" value="OnlyCurrentAgents" name="inlineRadioOptions" ng-model="moduleSettings.AgentsViewPermission">
+                            <i class="input-helper"></i>
+                            @Dnn.LocalizeString("OnlyCurrentAgents")
+                        </label>
+                        <label class="radio radio-inline m-r-20">
+                            <input type="radio" value="OnlyCurrentAgentsAndAdmin" name="inlineRadioOptions" ng-model="moduleSettings.AgentsViewPermission">
+                            <i class="input-helper"></i>
+                            @Dnn.LocalizeString("OnlyCurrentAgentsAndAdmin")
+                        </label>
+                        <label class="radio radio-inline m-r-20">
+                            <input type="radio" value="AllAgentsInDepartment" name="inlineRadioOptions" ng-model="moduleSettings.AgentsViewPermission">
+                            <i class="input-helper"></i>
+                            @Dnn.LocalizeString("AllAgentsInDepartment")
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox m-b-15">
+                        <label>
+                            <input type="checkbox" ng-model="moduleSettings.SendEmailForOffline">
+                            <i class="input-helper"></i>
+                            @Dnn.LocalizeString("SendEmailForOffline")
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox m-b-15">
+                        <label>
+                            <input type="checkbox" ng-model="moduleSettings.SendEmailAfterChat">
+                            <i class="input-helper"></i>
+                            @Dnn.LocalizeString("SendEmailAfterChat")
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 clearfix">
+                <div class="head">
+                    <h3><i class="md md-email m-r-5"></i>@Dnn.LocalizeString("EmailTemplates")</h3>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("TranscriptEmailTemplate")</label>
+                    <textarea ng-model='moduleSettings.TranscriptEmailTemplate' rows="10" class="pull-left w-400 cust-input"></textarea>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("OfflineEmailTemplate")</label>
+                    <textarea ng-model='moduleSettings.OfflineEmailTemplate' rows="10" class="pull-left w-400 cust-input"></textarea>
+                </div>
+                <button type="button" class="btn btn-primary m-t-5" ng-click="onUpdateSettingsClick()">@Dnn.LocalizeString("Update")</button>
+            </div>
+        </div>
+    </div>
+</div>

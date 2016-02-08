@@ -1,0 +1,121 @@
+﻿<!--Live Chat Widget-->
+<div class="mydnn-livechat-widget livechat-widget-{{widgetSettings.LiveChatWindowSize}} livechat-widget-position-{{widgetSettings.LiveChatWidgetPosition}}" ng-show="!livechat.WidgetMinimized">
+    <div class="livechat-top livechat-theme-bgcolor livechat-move">
+        <span class="livechat-minmax livechat-theme-titlecolor" ng-click="onLiveChatMinimizeClick()">_</span>
+        <div class="livechat-title livechat-theme-titlecolor">{{localizeString["Support.Text"]}}</div>
+    </div>
+    <!--Pre Chat-->
+    <div class="livechat-prechat" ng-show="livechat.Step=='prechat'" ng-form="livechatForm">
+        <div class="prechat-body">
+            <p ng-show="isAgentOnline" class="livechat-pregreeting">{{localizeString["PreGreeting.Text"]}}</p>
+            <p ng-show="!isAgentOnline" class="livechat-pregreeting">{{localizeString["OfflineMessage.Text"]}}</p>
+            <label>
+                {{localizeString["IntroduceYourself.Text"]}}
+            </label>
+            <div class="livechat-form-control">
+                <input class="livechat-input livechat-focusable" type="text" placeholder='{{localizeString["Name.Text"]}}' ng-model="livechat.Visitor.DisplayName"
+                    name="livechatDisplayName" required ng-class="{'err':livechatForm.livechatDisplayName.$error.required,'invalid':livechatFormValidate}" ng-blur="onBlurInput($event)" ng-disabled="livechat.Visitor.UserID!=-1" />
+            </div>
+            <div class="livechat-form-control">
+                <input class="livechat-input livechat-focusable" type="email" placeholder='{{localizeString["Email.Text"]}}' ng-model="livechat.Visitor.Email"
+                    name="livechatEmail" required ng-class="{'err':livechatForm.livechatEmail.$error.required||livechatForm.livechatEmail.$error.email,'invalid':livechatFormValidate}" ng-blur="onBlurInput($event)" ng-disabled="livechat.Visitor.UserID!=-1" />
+            </div>
+            <label>
+                {{localizeString["SelectDepartment.Text"]}}
+            </label>
+            <div class="livechat-form-control livechat-form-dropdown">
+                <select class="livechat-focusable" ng-options="dep.DepartmentName+'('+(dep.IsAgentOnline?localizeString['Online.Text']:localizeString['Offline.Text'])+')' for dep in departments track by dep.DepartmentID" ng-model="department"
+                    ng-change="onDepartmentChanged()" name="livechatDepartment" required ng-class="{'err':livechatForm.livechatDepartment.$error.required,'invalid':livechatFormValidate}" ng-blur="onBlurInput($event)">
+                    <option value="">--{{localizeString["Department.Text"]}}--</option>
+                </select>
+            </div>
+            <label>
+                {{localizeString["Message.Text"]}}
+            </label>
+            <div class="livechat-form-control">
+                <textarea class="livechat-textarea livechat-focusable" placeholder='{{localizeString["TypeYourMessage.Text"]}}' ng-model="livechat.Message"
+                    name="livechatMessage" ng-required='!isAgentOnline' ng-class="{'err':!isAgentOnline && livechatForm.livechatMessage.$error.required,'invalid':livechatFormValidate}" ng-blur="onBlurInput($event)"></textarea>
+            </div>
+        </div>
+        <div class="prechat-footer">
+            <a class="livechat-chat-button livechat-theme-bgcolor livechat-theme-titlecolor" ng-click="onStartChatClick()">
+                <span ng-show="isAgentOnline">{{localizeString["StartChat.Text"]}}</span>
+                <span ng-show="!isAgentOnline">{{localizeString["SendMessage.Text"]}}</span>
+            </a>
+        </div>
+    </div>
+    <!--Chat -->
+    <div class="livechat" ng-show="livechat.Step=='chatstarted'">
+        <div class="livchat-topinfo">
+            <div class="agents-image agent-count-{{livechat.Agents.length}}" ng-show="livechat.Agents.length">
+                <span class="agent-wrapper" ng-repeat="agent in livechat.Agents">
+                    <img ng-src="{{agent.Avatar}}" alt="" />
+                </span>
+            </div>
+            <span class="agent-wrapper" ng-show="!livechat.Agents.length">
+                <img ng-src="{{livechat.AgentDefaultAvatar}}" alt="" />
+            </span>
+            <span class="display-title livechat-theme-color">{{localizeString["LiveSupport.Text"]}}</span>
+            <span class="byline-title">{{localizeString["AskUs.Text"]}}</span>
+            <div class="chat-rating" ng-show="widgetSettings.LiveChatEnableRating">
+                <div class="rating-disable-wrapper" ng-show="!livechat.Agents.length"></div>
+                <span class="rating-good" ng-click="onChatRateClick(1)" ng-class="{'active':livechat.Rate==1}"></span>
+                <span class="rating-bad" ng-click="onChatRateClick(2)" ng-class="{'active':livechat.Rate==2}"></span>
+            </div>
+        </div>
+        <ul class="livechat-messages" schroll-bottom="onScrollBottom" data-livechat-messages="{{livechat.LiveChatID}}">
+            <li>
+                <div class="message-notify" ng-show="isAgentOnline && !livechat.Agents.length">{{localizeString["PleaseWaitUntilAgentAnswer.Text"]}}</div>
+            </li>
+            <li ng-repeat="message in livechat.Messages">
+                <div class="message-notify" ng-show="message.SentBy==0">
+                    {{message.Message}}
+                </div>
+                <div class="livechat-message" ng-show="message.SentBy!=0 && message.MessageType==0"
+                    ng-class="{'my-message':message.IsMyMessage,'sender-prevmessage':message.SenderPrevMessage,'show-avatar':widgetSettings.LiveChatShowAvatar,'speech-bubbles':widgetSettings.LiveChatMessageStyle=='SpeechBubbles'}">
+                    <span class="sender-avatar" ng-show="widgetSettings.LiveChatShowAvatar">
+                        <img ng-src="{{message.SenderAvatar}}" />
+                    </span>
+                    <div class="message-body">
+                        <span class="sender-displayname" ng-show="!message.SenderPrevMessage">{{message.SenderDisplayName}}</span>
+                        <p>{{message.Message}}</p>
+                        <span class="message-sent" ng-show="message.MessageID>0 && message.SentBy==1 && !message.Seen"></span>
+                        <span class="message-seen" ng-show="message.SentBy==1 && message.Seen"></span>
+                        <a class="message-resend" ng-show="message.Resend" ng-click="onResendMessage(message)">{{localizeString["Resend.Text"]}}</a>
+                        <span class="message-time">{{message.MsgTime}}</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="livechat-tools">
+            <!--Reconnecting...-->
+            <div class="livechat-reconnecting" ng-show="livechat.ConnectionState==2">
+                {{localizeString["Reconnecting.Text"]}}
+            </div>
+            <div class="livechat-agent-offline" ng-show="1==2 && livechat.Agent.UserID!=-1 && !livechat.Agent.IsOnline">
+                {{localizeString["AgentHasOffline.Text"]}}
+            </div>
+            <textarea class="message-editor livechat-focusable" placeholder='{{localizeString["TypeYourMessage.Text"]}}' ng-model="livechat.NewMessage" 
+                    ng-keypress="onMessageEditorKeypress($event)" ng-disabled="livechat.IsClosed"></textarea>
+            <div class="livechat-actions">
+                <a href="" ng-click="onOptionsClick($event)">{{localizeString["Options.Text"]}}</a>
+            </div>
+            <div class="livechat-popupmenu">
+                <div class="popup-item">
+                    <a href="javascript:void(0)" ng-click="onShowEmailClick($event)">{{localizeString["EmailTranscript.Text"]}}</a>
+                </div>
+                <div class="popup-item">
+                    <button type="button" class="livechat-btn" ng-click="onBtnEndChatClick()" ng-disabled="livechat.IsClosed">{{localizeString["EndLiveChat.Text"]}}</button>
+                </div>
+            </div>
+            <div class="livechat-email-transcript">
+                <input class="livechat-input livechat-focusable" type="email" ng-model="livechat.Visitor.Email" ng-click="onEmailInputClick($event)" />
+                <br />
+                <button type="button" class="livechat-btn" ng-click="onSendEmailClick($event)" ng-disabled="!livechat.Visitor.Email || waiting">
+                    <span ng-show="!waiting">{{localizeString["SendEmail.Text"]}}</span>
+                    <span ng-show="waiting">...</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

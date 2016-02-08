@@ -1,0 +1,172 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage
+
+<div class="card agents">
+    <!-- Begin: Agents Panel Header -->
+    <div class="card-header ch-alt pd-tb-15">
+        <h2 class="m-b-10"><i class="row-icon md md-domain"></i>&nbsp;@Dnn.LocalizeString("Agents")</h2>
+        <div class="input-group search-group">
+            <i class="md md-search"></i>
+            <input type="text" placeholder="@Dnn.LocalizeString("FindAgent")" class="search-field data-list" ng-model="filterModel">
+            <i class="md md-clear mouse-handle" ng-click="onClearFilterClick();"></i>
+        </div>
+        <div class="agent-filter-department cust-sel">
+            <select chosen multiple ng-model="departmentsFilter" ng-options="department for department in departments"
+                data-placeholder="@Dnn.LocalizeString("Departments")" width="200">
+            </select>
+        </div>
+        <ul class="actions">
+            <li>
+                <a href="" onclick="location.reload();">
+                    <i class="md md-cached"></i>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a data-toggle="dropdown" href="" aria-expanded="false">
+                    <i class="md md-more-vert"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a href="" ng-click="editAgent(undefined);">@Dnn.LocalizeString("AddNewAgent")</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <button type="button" class="btn bgm-lightgreen btn-float waves-effect" ng-click="onEditAgentClick();"><i class="md md-add"></i></button>
+    </div>
+    <!-- End: Agents Panel Header -->
+
+    <div class="card-body pd-tb-5">
+        <!-- Begin: Agent List -->
+        <table class="table" id="tblAgents">
+            <thead>
+                <tr>
+                    <th class="px40"></th>
+                    <th>@Dnn.LocalizeString("DisplayName")</th>
+                    <th>@Dnn.LocalizeString("Email")</th>
+                    <th>@Dnn.LocalizeString("Departments")</th>
+                    <th>@Dnn.LocalizeString("Enabled")</th>
+                    <th>@Dnn.LocalizeString("Priority")</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="agent in agents">
+                    <td>
+                        <span class="user-prfilepic-wrapper">
+                            <img ng-src="{{agent.ProfilePic}}" />
+                        </span>
+                    </td>
+                    <td>{{agent.DisplayName}}</td>
+                    <td>{{agent.Email}}</td>
+                    <td>
+                        <span class="gray-color" ng-show="!agent.Departments || !agent.Departments.length">@Dnn.LocalizeString("NoDepartments")</span>
+                        <ul class="agent-departments">
+                            <li ng-repeat="department in agent.Departments">
+                                <span class="user-displayname">{{department}}</span>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="text-center">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="agent.Enabled" disabled="disabled">
+                                <i class="input-helper"></i>
+                            </label>
+                        </div>
+                    </td>
+                    <td>{{agent.Priority}}</td>
+                    <td>
+                        <button type="button" class="btn btn-default btn-icon waves-effect waves-circle waves-float mg-r-5 no-box-shadow wh-33" ng-click="onEditAgentClick(agent)"><i class="md md-edit"></i></button>
+                        <button type="button" class="btn btn-default btn-icon waves-effect waves-circle waves-float mg-r-5 no-box-shadow wh-33" ng-click="onDeleteAgentClick(agent.AgentID,$index)"><i class="md md-delete"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="6"></th>
+                </tr>
+            </tfoot>
+        </table>
+        <!-- End: Agent List -->
+
+        <!-- Begin: Add / Edit Agent(Bootstrap Modal) -->
+        <div class="modal fade" id="wnEditAgent" tabindex="-1" role="dialog" aria-labelledby="wnTitleLabel" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="wnTitleLabel">{{winTitle}}</h4>
+                    </div>
+                    <div class="modal-body form-horizontal" ng-form="agentForm">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="fg-line">
+                                    <div role="tooltip" class="tooltip right in right-position" ng-show="checkValidate && !agent.UserID">
+                                        <div class="tooltip-arrow"></div>
+                                        <div class="tooltip-inner">
+                                            @Dnn.LocalizeString("ErrorMessage")
+                                        </div>
+                                    </div>
+                                    <input type="text" ng-model="agent.DisplayName" placeholder="@Dnn.LocalizeString("SelectUser")" class="form-control"
+                                        uib-typeahead="agent.DisplayName for agent in getUserByDisplayName($viewValue)" typeahead-on-select="setUserID($item)" ng-readonly="isAgentEdit"
+                                        required focus-on="newItemAdded">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="fg-line">
+                                    <div role="tooltip" class="tooltip right in right-position" ng-show="checkValidate && agentForm.departments.$error.required">
+                                        <div class="tooltip-arrow"></div>
+                                        <div class="tooltip-inner">
+                                            @Dnn.LocalizeString("ErrorMessage")
+                                        </div>
+                                    </div>
+                                    <select name="departments" multiple chosen ng-model="agent.Departments" ng-options="department for department in departments"
+                                        data-placeholder="@Dnn.LocalizeString("Departments")" width="300" required>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="fg-line">
+                                    <div role="tooltip" class="tooltip right in right-position" ng-show="checkValidate && agentForm.priority.$error.required">
+                                        <div class="tooltip-arrow"></div>
+                                        <div class="tooltip-inner">
+                                            @Dnn.LocalizeString("ErrorMessage")
+
+                                        </div>
+                                    </div>
+                                    <input type="number" min="0" max="99" number-mask="" placeholder="@Dnn.LocalizeString("Priority")" name="priority"
+                                        ng-model="agent.Priority" class="form-control" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mg-b-10">
+                            <div class="col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="agent.Enabled" />
+                                        <i class="input-helper"></i>
+                                        @Dnn.LocalizeString("Enabled")
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click="onUpdateAgentClick();">
+                            <span ng-show="agent.AgentID">@Dnn.LocalizeString("UpdateAgent")</span> 
+                            <span ng-show="!agent.AgentID">@Dnn.LocalizeString("AddAgent")</span> 
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">@Dnn.LocalizeString("Cancel")</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End: Add / Edit Agent -->
+    </div>
+</div>
+
+
