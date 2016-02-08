@@ -362,6 +362,9 @@ namespace MyDnn.Modules.Support.LiveChat.Services
         {
             try
             {
+                if (agent.UserID == 0)
+                    throw new Exception();
+
                 Requires.NotNegative("agent.UserID", agent.UserID);
 
                 var user = DotNetNuke.Entities.Users.UserController.GetUserById(PortalSettings.PortalId, agent.UserID);
@@ -462,8 +465,14 @@ namespace MyDnn.Modules.Support.LiveChat.Services
         {
             try
             {
+                var agent = AgentManager.Instance.GetAgent(PortalSettings.PortalId, postData.ID);
+
                 DepartmentAgentManager.Instance.DeleteAgentDepartments(postData.ID);
                 AgentManager.Instance.DeleteAgent(PortalSettings.PortalId, postData.ID);
+
+                var user = DotNetNuke.Entities.Users.UserController.GetUserById(PortalSettings.PortalId, agent.UserID);
+                var role = RoleController.Instance.GetRoleByName(PortalSettings.PortalId, "MyDnnSupportAgent");
+                RoleController.DeleteUserRole(user, role, PortalSettings, false);
 
                 return Request.CreateResponse(HttpStatusCode.OK, new { Success = true });
             }
