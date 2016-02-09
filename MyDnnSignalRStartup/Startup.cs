@@ -5,7 +5,7 @@ using Owin;
 using System;
 
 
-[assembly: OwinStartup(typeof(Startup))]
+[assembly: OwinStartup("MyDnnOwinStartupForSignalR", typeof(Startup))]
 namespace MyDnn.SignalRStartup
 {
     public class Startup
