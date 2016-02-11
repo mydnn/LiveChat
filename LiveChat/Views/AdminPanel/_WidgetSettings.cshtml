@@ -87,6 +87,26 @@
                             <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("Byline")</label>
                             <input type="text" ng-model='localizeString["AskUs.Text"]' class="pull-left w-200 cust-input" />
                         </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("VisitorAvatar")</label>
+                            <div class="pull-left image-preview-panel" ngf-drop="onDropFiles($files,1)" ngf-drag-over-class="'dragover'" ngf-pattern="'image/*'">
+                                <img ngf-src="widgetSettings.VisitorDefaultAvatar" />
+                            </div>
+                            <div class="pull-left file-input-wrapper">
+                                <button class="btn bgm-gray waves-effect">@Dnn.LocalizeString("UploadImage")</button>
+                                <input type="file" ngf-select="onUploadPhoto($files,1)" ng-model="widgetSettings.VisitorDefaultAvatar" accept="image/*"/>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("AgentDefaultAvatar")</label>
+                            <div class="pull-left image-preview-panel" ngf-drop="onDropFiles($files,2)" ngf-drag-over-class="'dragover'" ngf-pattern="'image/*'">
+                                <img ngf-src="widgetSettings.AgentDefaultAvatar" />
+                            </div>
+                            <div class="pull-left file-input-wrapper">
+                                <button class="btn bgm-gray waves-effect">@Dnn.LocalizeString("UploadImage")</button>
+                                <input type="file" ngf-select="onUploadPhoto($files,2)" ng-model="widgetSettings.AgentDefaultAvatar" accept="image/*"/>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-8 clearfix m-b-20">
                         <div class="head">
@@ -171,13 +191,13 @@
                         </div>
                         <div class="form-group clearfix">
                             <label class="pull-left w-100 m-r-20">Online Button</label>
-                            <textarea row="3" ng-model='minButtonSettings.OnlineButton' class="pull-left w-200 cust-input rsize" ng-focus="onFormElementFocus('online')"
+                            <textarea row="3" ng-model='minButtonSettings.OnlineButton' class="pull-left w-300 cust-input rsize" ng-focus="onFormElementFocus('online')"
                                 data-original-title="@Dnn.LocalizeString("UseHtml")" title="" data-content="@Dnn.LocalizeString("YouCanUseHtml")" data-placement="right" data-toggle="popover"  data-trigger="focus"></textarea>
                         </div>
                         <div class="form-group clearfix">
                             <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("OnlineBGColor")</label>
-                            <div class="pull-left w-200 fg-line dropdown">
-                                <input type="text" data-toggle="dropdown" ng-model="minButtonSettings.OnlineButtonBGColor" class="w-200 cust-input cp-value" ng-focus="onFormElementFocus('online')"/>
+                            <div class="pull-left w-300 fg-line dropdown">
+                                <input type="text" data-toggle="dropdown" ng-model="minButtonSettings.OnlineButtonBGColor" class="w-300 cust-input cp-value" ng-focus="onFormElementFocus('online')"/>
                                 <div class="dropdown-menu">
                                     <ng-farbtastic ng-model="minButtonSettings.OnlineButtonBGColor"></ng-farbtastic>
                                 </div>
@@ -186,8 +206,8 @@
                         </div>
                         <div class="form-group clearfix">
                             <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("OnlineColor")</label>
-                            <div class="pull-left w-200 fg-line dropdown">
-                                <input type="text" data-toggle="dropdown" ng-model="minButtonSettings.OnlineButtonColor" class="w-200 cust-input cp-value" ng-focus="onFormElementFocus('online')" />
+                            <div class="pull-left w-300 fg-line dropdown">
+                                <input type="text" data-toggle="dropdown" ng-model="minButtonSettings.OnlineButtonColor" class="w-300 cust-input cp-value" ng-focus="onFormElementFocus('online')" />
                                 <div class="dropdown-menu">
                                     <ng-farbtastic ng-model="minButtonSettings.OnlineButtonColor"></ng-farbtastic>
                                 </div>
@@ -196,13 +216,13 @@
                         </div>
                         <div class="form-group clearfix">
                             <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("OfflineButton")</label>
-                            <textarea row="3" ng-model='minButtonSettings.OfflineButton' class="pull-left w-200 cust-input rsize" ng-focus="onFormElementFocus('offline')"
+                            <textarea row="3" ng-model='minButtonSettings.OfflineButton' class="pull-left w-300 cust-input rsize" ng-focus="onFormElementFocus('offline')"
                                 data-original-title="@Dnn.LocalizeString("UseHtml")" title="" data-content="@Dnn.LocalizeString("YouCanUseHtml")" data-placement="right" data-toggle="popover"  data-trigger="focus"></textarea>
                         </div>
                         <div class="form-group clearfix">
                             <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("OfflineBGColor")</label>
-                            <div class="pull-left w-200 fg-line dropdown">
-                                <input type="text" data-toggle="dropdown" ng-model="minButtonSettings.OfflineButtonBGColor" class="w-200 cust-input cp-value" ng-focus="onFormElementFocus('offline')"/>
+                            <div class="pull-left w-300 fg-line dropdown">
+                                <input type="text" data-toggle="dropdown" ng-model="minButtonSettings.OfflineButtonBGColor" class="w-300 cust-input cp-value" ng-focus="onFormElementFocus('offline')"/>
                                 <div class="dropdown-menu">
                                     <ng-farbtastic ng-model="minButtonSettings.OfflineButtonBGColor"></ng-farbtastic>
                                 </div>
@@ -211,8 +231,8 @@
                         </div>
                         <div class="form-group clearfix">
                             <label class="pull-left w-100 m-r-20">@Dnn.LocalizeString("OfflineColor")</label>
-                            <div class="pull-left w-200 fg-line dropdown">
-                                <input type="text" data-toggle="dropdown" ng-model="minButtonSettings.OfflineButtonColor" class="w-200 cust-input cp-value" ng-focus="onFormElementFocus('offline')" />
+                            <div class="pull-left w-300 fg-line dropdown">
+                                <input type="text" data-toggle="dropdown" ng-model="minButtonSettings.OfflineButtonColor" class="w-300 cust-input cp-value" ng-focus="onFormElementFocus('offline')" />
                                 <div class="dropdown-menu">
                                     <ng-farbtastic ng-model="minButtonSettings.OfflineButtonColor"></ng-farbtastic>
                                 </div>
@@ -271,7 +291,3 @@
         </div>
     </div>
 </div>
-
-
-
-

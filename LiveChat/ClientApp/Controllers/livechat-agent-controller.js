@@ -1,16 +1,19 @@
-﻿app.controller("livechatAgentController", function ($scope, $window, $location, $http, $interval, $timeout, $filter, localizationService, HubProxy) {
+﻿app.controller("livechatAgentController", function ($scope, $window, $location, $http, $interval, $timeout, $filter, ngAudio, localizationService, HubProxy) {
     var siteRoot = mydnnSupportLiveChat.SiteRoot;
     var portalID = mydnnSupportLiveChat.PortalID;
     var currentCulture = mydnnSupportLiveChat.CurrentCulture;
-    var clearKeyPress = true;
     var timerCalculator;
+    var isTyping = false;
     var me;
 
+    $scope.localizeString = mydnnSupportLiveChat.SharedResources;
     $scope.currentLiveChat = 0;
     $scope.livechats = [];
     $scope.serveRequests = [];
-
-    $scope.localizeString = mydnnSupportLiveChat.SharedResources;
+    $scope.sounds = {
+        Incoming: ngAudio.load(siteRoot + "DesktopModules/MVC/MyDnnSupport/LiveChat/Content/Sounds/incoming.mp3"),
+        NewMessage: ngAudio.load(siteRoot + "DesktopModules/MVC/MyDnnSupport/LiveChat/Content/Sounds/newmessage.mp3"),
+    }
 
     if (localStorage["MyDnnVisitorsOnline_VisitorGUID"] == null) {
         localStorage["MyDnnVisitorsOnline_VisitorGUID"] = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -69,8 +72,10 @@
     };
 
     $scope.onMessageEditorKeypress = function ($event, livechatID) {
-        if ($event.which === 13 && clearKeyPress) {
+        if ($event.which === 13) {
             var livechat = $filter("filter")($scope.livechats, { LiveChatID: livechatID })[0];
+
+            if (!livechat.NewMessage) return; //empty message
 
             var message = {
                 MessageID: -1,
@@ -89,19 +94,20 @@
 
             $scope.$broadcast("onScrollBottom", { id: livechat.LiveChatID });
 
-            if (clearKeyPress) {
-                clearKeyPress = false;
-
-                sendMessage(livechat, message);
-
-                $timeout(function () {
-                    clearKeyPress = true;
-                }, 100);
-            }
+            sendMessage(livechat, message);
 
             $event.preventDefault();
+        }
+        else { //agent is typing...
+            if (!isTyping) {
+                isTyping = true;
 
-            return false;
+                visitorIsTyping();
+
+                $timeout(function () {
+                    isTyping = false;
+                }, 4000);
+            }
         }
     };
 
@@ -148,7 +154,7 @@
     });
 
     //signalR 
-    var hub = new HubProxy('MyDnnSupportLiveChatHub');
+    var hub = new HubProxy('MyDnnSupportLiveChatHub', { connectionPath: siteRoot });
     hub.on('incomingLiveChat', function (livechatID, visitorGUID, message, mode) {
         var result = ($filter("filter")($scope.serveRequests, { LiveChatID: livechatID }));
         if (!result.length && mode == "add") {
@@ -159,6 +165,17 @@
                 VisitorGUID: visitorGUID
             };
             $scope.serveRequests.push(req);
+
+            if (!checkPageFocus()) {
+                //play new message rigthtone
+                playSound('incoming');
+
+                //desktop notification
+                if ($scope.widgetSettings.ShowDekstopNotificationForIncoming == 'True' && Notification.permission === "granted") {
+                    showDesktopNotification($scope.localizeString['IncomingChat.Text'], '');
+                }
+            }
+
         }
         else if (result.length && mode == "remove") {
             var indx = $scope.serveRequests.indexOf(result[0]);
@@ -261,18 +278,26 @@
 
     function joinAgent() {
         hub.invoke('JoinAgent', portalID, true, true).then(function (data) {
-            if (data.Me)
-                me = data.Me;
+            if (data) {
+                if (data.Me)
+                    me = data.Me;
 
-            if (data.LiveChats) {
-                $scope.livechats = data.LiveChats;
-                for (var i = 0; i < $scope.livechats.length; i++) {
-                    parseVisitorItems($scope.livechats[i]);
-                    parseLiveChatMessages($scope.livechats[i], $scope.livechats[i].Messages);
+                if (data.LiveChats) {
+                    $scope.livechats = data.LiveChats;
+                    for (var i = 0; i < $scope.livechats.length; i++) {
+                        parseVisitorItems($scope.livechats[i]);
+                        parseLiveChatMessages($scope.livechats[i], $scope.livechats[i].Messages);
+                    }
                 }
+                if (data.IncomingLiveChats)
+                    $scope.serveRequests = data.IncomingLiveChats;
+
+                if (data.Settings)
+                    $scope.widgetSettings = data.Settings;
+
+                if ((data.Settings.ShowDekstopNotificationForIncoming == 'True' || data.Settings.ShowDekstopNotificationForNewMsg == 'True') && Notification.permission !== 'denied')
+                    Notification.requestPermission();
             }
-            if (data.IncomingLiveChats)
-                $scope.serveRequests = data.IncomingLiveChats;
         });
     }
 
@@ -300,6 +325,24 @@
 
         if (checkPageFocus() && $scope.currentLiveChat == livechat.LiveChatID) {
             seenMessage(message);
+        }
+
+        if (!checkPageFocus()) {
+            //play new message rigthtone
+            playSound('newmessage');
+
+            //desktop notification
+            if ($scope.widgetSettings.ShowDekstopNotificationForNewMsg == 'True' && Notification.permission === "granted") {
+                showDesktopNotification(livechat.Visitor.DisplayName, message.Message);
+            }
+        }
+    }
+
+    function visitorIsTyping(livechatID) {
+        var result = $filter("filter")($scope.livechats, { LiveChatID: livechatID });
+        if (result.length) {
+            var livechat = result[0];
+            hub.invoke('AgentIsTyping', portalID, livechat.Visitor.VisitorGUID);
         }
     }
 
@@ -362,6 +405,7 @@
             message.SenderAvatar = agent.Avatar;
             message.IsMyMessage = true;
         }
+        message.MsgTime = moment(message.CreateDate).format("hh:mm")
     }
 
     function offlineVisitor(visitorGUID) {
@@ -410,6 +454,30 @@
         return diff + ' ' + lbl;
     }
 
+    function playSound(eventName) {
+        if (eventName == 'incoming') {
+            $scope.sounds.Incoming.play();
+        }
+
+        if (eventName == 'newmessage') {
+            $scope.sounds.NewMessage.play();
+        }
+    }
+
+    function showDesktopNotification(title, body) {
+        var notification = new Notification(title, {
+            icon: siteRoot + 'DesktopModules/MVC/MyDnnSupport/LiveChat/Styles/images/logo2.png',
+            body: body
+        });
+        notification.onclick = function () {
+            notification.close();
+            window.focus();
+        };
+        setTimeout(function () {
+            notification.close();
+        }, 5000);
+    }
+
     function checkPageFocus() {
         if (typeof document.hasFocus === 'function')
             return document.hasFocus();
@@ -419,7 +487,7 @@
 
     ///////////////////////////////////////////////////
     // signalR for visitors online hub
-    var vHub = new HubProxy('MyDnnVisitorsOnlineHub');
+    var vHub = new HubProxy('MyDnnVisitorsOnlineHub', { connectionPath: siteRoot });
     vHub.on('populateVisitorsOnline', function (visitor) {
         $scope.$root.$broadcast("onPopulateVisitorsOnline", { visitor: visitor });
     });

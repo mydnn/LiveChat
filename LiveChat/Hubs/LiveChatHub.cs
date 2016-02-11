@@ -155,7 +155,16 @@ namespace MyDnn.Modules.Support.LiveChat.Hubs
                 }
             }
 
-            return new { IncomingLiveChats = incomingLiveChats.Select(i => new { LiveChatID = i.LiveChatID, VisitorGUID = i.VisitorGUID }), LiveChats = livechats, Me = agent };
+            var moduleID = int.Parse(PortalController.GetPortalSetting("MyDnnLiveChatModuleID", portalID, "-1"));
+            var Settings = new ModuleController().GetModule(moduleID).ModuleSettings;
+
+            return new
+            {
+                IncomingLiveChats = incomingLiveChats.Select(i => new { LiveChatID = i.LiveChatID, VisitorGUID = i.VisitorGUID }),
+                LiveChats = livechats,
+                Me = agent,
+                Settings = Settings
+            };
         }
 
         /// <summary>
@@ -402,6 +411,11 @@ namespace MyDnn.Modules.Support.LiveChat.Hubs
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="portalID"></param>
+        /// <param name="livechatID"></param>
         public void VisitorIsTyping(int portalID, int livechatID)
         {
             var objLiveChatInfo = LiveChatManager.Instance.GetLiveChatByID(livechatID);
@@ -419,6 +433,16 @@ namespace MyDnn.Modules.Support.LiveChat.Hubs
                     Clients.Group(AgentGroupName + agent.UserID).visitorIsTyping();
                 }
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="portalID"></param>
+        /// <param name="visitorGUID"></param>
+        public void AgentIsTyping(int portalID, string visitorGUID)
+        {
+            Clients.Group(portalID + "-" + visitorGUID).agentIsTyping();
         }
 
         /// <summary>
@@ -516,6 +540,17 @@ namespace MyDnn.Modules.Support.LiveChat.Hubs
         /// </summary>
         /// <param name="portalID"></param>
         /// <param name="livechatID"></param>
+        /// <param name="lastMessageDate"></param>
+        public void AgentReconnectedToLiveChat(int portalID, int livechatID, DateTime lastMessageDate)
+        {
+            // -- next version :)
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="portalID"></param>
+        /// <param name="livechatID"></param>
         /// <returns></returns>
         public bool CloseLiveChatByVisitor(int portalID, int livechatID)
         {
@@ -604,16 +639,6 @@ namespace MyDnn.Modules.Support.LiveChat.Hubs
             return isClosed;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="portalID"></param>
-        /// <param name="livechatID"></param>
-        /// <param name="lastMessageDate"></param>
-        public void AgentReconnectedToLiveChat(int portalID, int livechatID, DateTime lastMessageDate)
-        {
-            // -- next version :)
-        }
 
         #endregion
 
@@ -631,7 +656,6 @@ namespace MyDnn.Modules.Support.LiveChat.Hubs
             livechat.PortalID = objLiveChatInfo.PortalID;
 
             var moduleID = int.Parse(PortalController.GetPortalSetting("MyDnnLiveChatModuleID", objLiveChatInfo.PortalID, "-1"));
-            Requires.NotNegative("moduleID", moduleID);
             var Settings = new ModuleController().GetModule(moduleID).ModuleSettings;
 
             //Visitor

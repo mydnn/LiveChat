@@ -7,7 +7,7 @@ var mydnnLiveChatRequests;
         var __livechatIsLoaded = false;
         var __requestsString;
         var __adminPanelUrl;
-        var __rootUrl = "/";
+        var __siteRoot = "/";
         var __visitorGUID;
         var __portalID;
         var __me = this;
@@ -21,11 +21,11 @@ var mydnnLiveChatRequests;
         }).done(function (data) {
             if (typeof mydnnSupportLiveChat != "undefined") return; // This means that i am in adminpanel page
 
-            __rootUrl = data.RootUrl;
+            __siteRoot = data.SiteRoot;
             __portalID = data.PortalID;
 
             if (data.LiveChatEnabled) {
-                $('body').append('<link href="' + __rootUrl + 'DesktopModules/MVC/MyDnnSupport/LiveChat/Templates/' + data.Template + '/style.css" type="text/css" rel="stylesheet"/>');
+                $('body').append('<link href="' + __siteRoot + 'DesktopModules/MVC/MyDnnSupport/LiveChat/Templates/' + data.Template + '/style.css" type="text/css" rel="stylesheet"/>');
 
                 __visitorGUID = localStorage["MyDnnVisitorsOnline_VisitorGUID"];
                 __isAgentOnline = data.IsAgentOnline;
@@ -35,16 +35,12 @@ var mydnnLiveChatRequests;
         });
 
         this.initialLiveChat = function (data) {
-            if (__counter++ < 10 && (typeof $.connection == "undefined")) {
+            if (__counter++ < 50 && (typeof $.connection == "undefined")) {
                 setTimeout(function () {
                     __me.initialLiveChat(data);
                 }, 1000);
             }
             else {
-                if (typeof $.connection == "undefined") {
-                    alert('signalR is not enabled!');
-                }
-
                 var $minButton = $('<div id="mydnnLiveChatMinButton"></div>').html(data.LiveChatMinButton);
                 $('body').append($minButton);
 
@@ -80,7 +76,7 @@ var mydnnLiveChatRequests;
         }
 
         this.joinAgent = function () {
-            if (__counter++ < 10 && (typeof $.connection == "undefined" || $.connection.MyDnnSupportLiveChatHub.connection.state != 1)) {
+            if (__counter++ < 50 && (typeof $.connection == "undefined" || $.connection.MyDnnSupportLiveChatHub.connection.state != 1)) {
                 setTimeout(function () {
                     __me.joinAgent();
                 }, 1000);
@@ -126,7 +122,7 @@ var mydnnLiveChatRequests;
 
         this.loadAngularAndScripts = function (data) {
             if (typeof angular == "undefined")
-                $.getScript(__rootUrl + "DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/angularjs/angular.min.js", function () {
+                $.getScript(__siteRoot + "DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/angularjs/angular.min.js", function () {
                     __me.loadLiveChatScripts(data);
                 });
             else
@@ -134,11 +130,11 @@ var mydnnLiveChatRequests;
         }
 
         this.loadLiveChatScripts = function (data) {
-            $.getScript(__rootUrl + "DesktopModules/MVC/MyDnnSupport/LiveChat/ClientApp/Services/signalr.service.js", function () {
-                $.getScript(__rootUrl + "DesktopModules/MVC/MyDnnSupport/LiveChat/ClientApp/Services/ng-mydnn-services.js", function () {
-                    $.getScript(__rootUrl + "DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/moment.js/moment.min.js", function () {
-                        $.getScript(__rootUrl + "DesktopModules/MVC/MyDnnSupport/LiveChat/ClientApp/Controllers/livechat-visitor-controller.js", function () {
-                            mydnnLiveChatBaseData = { RootUrl: __rootUrl, VisitorGUID: __visitorGUID };
+            $.getScript(__siteRoot + "DesktopModules/MVC/MyDnnSupport/LiveChat/ClientApp/Services/signalr.service.js", function () {
+                $.getScript(__siteRoot + "DesktopModules/MVC/MyDnnSupport/LiveChat/ClientApp/Services/ng-mydnn-services.js", function () {
+                    $.getScript(__siteRoot + "DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/moment.js/moment.min.js", function () {
+                        $.getScript(__siteRoot + "DesktopModules/MVC/MyDnnSupport/LiveChat/ClientApp/Controllers/livechat-visitor-controller.js", function () {
+                            mydnnLiveChatBaseData = { SiteRoot: __siteRoot, VisitorGUID: __visitorGUID };
                             var $ang = $('<div id="mydnnSupportLiveChat" ng-app="MyDnnSupportLiveChatApp"><div ng-controller="livechatController"><div id="mydnnLiveChatWidget" dynamic="WidgetHtml"></div></div></div>');
                             $ang.appendTo($('body'));
                             angular.bootstrap(document.getElementById('mydnnSupportLiveChat'), ['MyDnnSupportLiveChatApp']);

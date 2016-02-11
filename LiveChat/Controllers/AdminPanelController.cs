@@ -1,5 +1,7 @@
-﻿using DotNetNuke.Entities.Modules;
+﻿using DotNetNuke.Common.Utilities;
+using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Portals;
+using DotNetNuke.Security.Roles;
 using DotNetNuke.Web.Mvc.Framework.Controllers;
 using MyDnn.Modules.Support.LiveChat.ViewModels;
 using System;
@@ -32,6 +34,13 @@ namespace MyDnn.Modules.Support.LiveChat.Controllers
                     mustRedirect = true;
                     newUrl = ModuleContext.EditUrl("", "", "AdminPanel", "controller", "AdminPanel", "action", "AdminPanel", "SkinSrc=[G]Skins%2f_default%2fNo+Skin&ContainerSrc=[G]Containers%2f_default%2fNo+Container");
                 }
+            }
+
+            if (!User.IsInRole("MyDnnSupportAgent"))
+            {
+                //add agent role to current user
+                var role = RoleController.Instance.GetRoleByName(PortalSettings.PortalId, "MyDnnSupportAgent");
+                RoleController.AddUserRole(User, role, PortalSettings, DotNetNuke.Security.Roles.RoleStatus.Approved, Null.NullDate, Null.NullDate, true, false);
             }
 
             var model = new ModuleConfigStatusViewModel();

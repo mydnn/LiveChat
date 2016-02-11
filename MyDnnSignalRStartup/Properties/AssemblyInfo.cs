@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MyDnn.Modules.ChatRom")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("MyDnn.SignalRStartup")]
+[assembly: AssemblyDescription("a library for owin startup")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MyDnn.Modules.ChatRom")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyProduct("MyDnn.SignalRStartup")]
+[assembly: AssemblyCopyright("Copyright ©  2016 Mydnn Group")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

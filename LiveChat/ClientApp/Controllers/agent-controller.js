@@ -94,7 +94,13 @@
                         title: $scope.localizeString["Done.Text"],
                         text: $scope.localizeString["UpdateAgentMsg.Text"],
                         type: "success",
-                        timer: 3000
+                        showCancelButton: true,
+                        confirmButtonColor: "#4E9A36",
+                        confirmButtonText: $scope.localizeString["RefreshPage.Text"],
+                        cancelButtonText: $scope.localizeString["No.Text"],
+                        closeOnConfirm: false,
+                    }, function () {
+                        location.reload();
                     });
 
                     $('#wnEditAgent').modal('hide');
@@ -117,7 +123,13 @@
                         title: $scope.localizeString["Done.Text"],
                         text: $scope.localizeString["AddAgentMsg.Text"],
                         type: "success",
-                        timer: 3000
+                        showCancelButton: true,
+                        confirmButtonColor: "#4E9A36",
+                        confirmButtonText: $scope.localizeString["RefreshPage.Text"],
+                        cancelButtonText: $scope.localizeString["No.Text"],
+                        closeOnConfirm: false,
+                    }, function () {
+                        location.reload();
                     });
 
                     $('#wnEditAgent').modal('hide');

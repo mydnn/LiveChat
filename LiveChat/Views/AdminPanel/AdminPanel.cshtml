@@ -26,6 +26,12 @@
     //Ui Bootstrap For Angularjs
     ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/ui-bootstrap/ui-bootstrap-tpls.min.js");
 
+    //ng-file-upload Angularjs plugin
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/ng-file-upload/ng-file-upload.min.js");
+
+    //ngAudio Angularjs plugin
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/ngAudio/angular.audio.js");
+
     //sweetalert
     ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/angular-farbtastic/farbtastic.css");
     ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/angular-farbtastic/angular-farbtastic.js");
@@ -68,7 +74,7 @@
     ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/ua-parser/ua-parser.min.js");
 
     //SignalR
-    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/signalr/jquery.signalR-2.1.0.min.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/MyDnnSupport/LiveChat/ClientComponents/signalr/jquery.signalR-2.1.1.min.js");
     ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/signalr/hubs");
 
     //Custom AngularJS Services 
@@ -110,7 +116,7 @@
         {
             <a href="#settings" role="alert" class="alert alert-danger alert-dismissible">
                 <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span></button>
-                @Dnn.LocalizeString("VisitorsEnabledAlert")
+                @Dnn.LocalizeString("LiveChatEnabledAlert")
             </a>
         }
         @if (!Model.BasicSettingsUpdated)
@@ -124,7 +130,7 @@
         {
             <a href="#widgetsettings" role="alert" class="alert alert-warning alert-dismissible">
                 <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span></button>
-                @Dnn.LocalizeString("BasicSettingsUpdatedAlert")
+                @Dnn.LocalizeString("WidgetSettingsUpdatedAlert")
             </a>
         }
     </div>
@@ -140,8 +146,10 @@
                     <div class="line bottom"></div>
                 </div>
             </li>
-            <li class="logo hidden-xs">
-                <a href="#">@Dnn.LocalizeString("MyDnnSupport")</a>
+            <li class="hidden-xs">
+                <a class="m-l-10" href="#">
+                    <img alt="" src="@Dnn.DnnPage.ResolveUrl("~/DesktopModules/MVC/MyDnnSupport/LiveChat/Styles/images/logo.png")" />
+                </a>
             </li>
             <li class="pull-right">
                 <ul class="top-menu">
@@ -273,7 +281,7 @@
                     foreach (System.Collections.DictionaryEntry item in MyDnn.Modules.Support.LiveChat.Components.Common.Localization.Instance.GetResources(Dnn.DnnPage.ResolveUrl("~/DesktopModules/MVC/MyDnnSupport/LiveChat/App_LocalResources/SharedResources"), Dnn.PortalSettings.CultureCode))
                     {
 	                	@: '@item.Key': '@item.Value',
-                                                                                                                    }
+                                                                                                                                    }
                 }
             }
         }

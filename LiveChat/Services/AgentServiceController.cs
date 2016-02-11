@@ -28,6 +28,8 @@ using DotNetNuke.Entities.Modules;
 using System.Text.RegularExpressions;
 using DotNetNuke.Security.Roles;
 using DotNetNuke.Instrumentation;
+using System.Threading.Tasks;
+using DotNetNuke.Common.Utilities;
 
 namespace MyDnn.Modules.Support.LiveChat.Services
 {
@@ -78,6 +80,36 @@ namespace MyDnn.Modules.Support.LiveChat.Services
         private static readonly ILog Logger = LoggerSource.Instance.GetLogger(typeof(AgentServiceController));
 
         #region WebApi Methods
+
+        #region Common
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<HttpResponseMessage> UploadFile()
+        {
+            if (!Request.Content.IsMimeMultipartContent())
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+
+            int portalID = PortalSettings.PortalId;
+            var homeDirectory = PortalSettings.HomeDirectory;
+
+            var destPath = PortalSettings.HomeDirectoryMapPath + "\\MyDnn\\LiveChat\\Admin\\";
+
+            if (!Directory.Exists(destPath))
+                Directory.CreateDirectory(destPath);
+
+            var provider = new CustomMultipartFormDataStreamProvider(destPath);
+            await Request.Content.ReadAsMultipartAsync(provider);
+
+            var filename = Path.GetFileName(provider.FileData[0].LocalFileName);
+
+            return Request.CreateResponse(HttpStatusCode.Created, homeDirectory + string.Format("MyDnn/LiveChat/Admin/{0}", filename));
+        }
+
+        #endregion
 
         #region Visitor List
 
@@ -381,8 +413,11 @@ namespace MyDnn.Modules.Support.LiveChat.Services
                 int agentID = AgentManager.Instance.AddAgent(objAgentInfo);
                 agent.AgentID = agentID;
 
-                var role = RoleController.Instance.GetRoleByName(PortalSettings.PortalId, "MyDnnSupportAgent");
-                RoleController.AddUserRole(user, role, PortalSettings, DotNetNuke.Security.Roles.RoleStatus.Approved, DateTime.Now, DateTime.Now.AddYears(100), true, false);
+                if (!user.IsInRole("MyDnnSupportAgent"))
+                {
+                    var role = RoleController.Instance.GetRoleByName(PortalSettings.PortalId, "MyDnnSupportAgent");
+                    RoleController.AddUserRole(user, role, PortalSettings, DotNetNuke.Security.Roles.RoleStatus.Approved, Null.NullDate, Null.NullDate, true, false);
+                }
 
                 var departments = DepartmentManager.Instance.GetDepartments(PortalSettings.PortalId);
                 foreach (var item in agent.Departments)
@@ -598,7 +633,7 @@ namespace MyDnn.Modules.Support.LiveChat.Services
         {
             try
             {
-                Hashtable moduleSettings = null;
+                Hashtable moduleSettings = new Hashtable();
                 Hashtable portalSettings = new Hashtable();
 
                 var moduleID = int.Parse(PortalController.GetPortalSetting("MyDnnLiveChatModuleID", PortalSettings.PortalId, "-1"));
@@ -643,9 +678,6 @@ namespace MyDnn.Modules.Support.LiveChat.Services
 
                 ModuleController.Instance.UpdateModuleSetting(moduleID, "UpdateBasicSettings", "True");
 
-                ModuleController.Instance.UpdateModuleSetting(moduleID, "AgentDefaultAvatar", Globals.ResolveUrl("~/DesktopModules/MVC/MyDnnSupport/LiveChat/Styles/images/agent-avatar.png"));
-                ModuleController.Instance.UpdateModuleSetting(moduleID, "VisitorDefaultAvatar", Globals.ResolveUrl("~/DesktopModules/MVC/MyDnnSupport/LiveChat/Styles/images/visitor-avatar.png"));
-
                 ModuleController.Instance.UpdateModuleSetting(moduleID, "PlaySoundWhenNewMsg", postData.ModuleSettings["PlaySoundWhenNewMsg"].ToString());
                 ModuleController.Instance.UpdateModuleSetting(moduleID, "ShowDekstopNotificationForIncoming", postData.ModuleSettings["ShowDekstopNotificationForIncoming"].ToString());
                 ModuleController.Instance.UpdateModuleSetting(moduleID, "ShowDekstopNotificationForNewMsg", postData.ModuleSettings["ShowDekstopNotificationForNewMsg"].ToString());
@@ -673,9 +705,8 @@ namespace MyDnn.Modules.Support.LiveChat.Services
         {
             try
             {
-                string template = string.Empty;
-                string liveChatWidget = string.Empty;
-                Hashtable Settings = null;
+                string template = "default";
+                Hashtable Settings = new Hashtable();
 
                 var livechatEnabled = bool.Parse(PortalController.GetPortalSetting("MyDnnLiveChatEnabled", PortalSettings.PortalId, "false"));
                 if (livechatEnabled)
@@ -686,9 +717,10 @@ namespace MyDnn.Modules.Support.LiveChat.Services
                         var moduleInfo = new ModuleController().GetModule(moduleID);
                         Settings = moduleInfo.ModuleSettings;
                         template = (Settings["Template"] != null ? Settings["Template"].ToString() : "default");
-                        liveChatWidget = Common.GetFileContent(HttpContext.Current.Request.MapPath(Globals.ResolveUrl(string.Format("~/DesktopModules/MVC/MyDnnSupport/LiveChat/Templates/{0}/view.html", template))));
                     }
                 }
+
+                string liveChatWidget = Common.GetFileContent(HttpContext.Current.Request.MapPath(Globals.ResolveUrl(string.Format("~/DesktopModules/MVC/MyDnnSupport/LiveChat/Templates/{0}/view.html", template))));
 
                 return Request.CreateResponse(HttpStatusCode.OK, new
                 {
@@ -727,6 +759,8 @@ namespace MyDnn.Modules.Support.LiveChat.Services
                 ModuleController.Instance.UpdateModuleSetting(moduleID, "LiveChatEnableRating", postData.WidgetSettings["LiveChatEnableRating"].ToString());
                 ModuleController.Instance.UpdateModuleSetting(moduleID, "LiveChatShowAvatar", postData.WidgetSettings["LiveChatShowAvatar"].ToString());
                 ModuleController.Instance.UpdateModuleSetting(moduleID, "LiveChatMessageStyle", postData.WidgetSettings["LiveChatMessageStyle"].ToString());
+                ModuleController.Instance.UpdateModuleSetting(moduleID, "VisitorDefaultAvatar", postData.WidgetSettings["VisitorDefaultAvatar"].ToString());
+                ModuleController.Instance.UpdateModuleSetting(moduleID, "AgentDefaultAvatar", postData.WidgetSettings["AgentDefaultAvatar"].ToString());
 
                 ModuleController.Instance.UpdateModuleSetting(moduleID, "LiveChatMinBtnOnline", postData.MinButtonSettings["OnlineButton"].ToString());
                 ModuleController.Instance.UpdateModuleSetting(moduleID, "LiveChatMinBtnOnlineBgColor", postData.MinButtonSettings["OnlineButtonBGColor"].ToString());

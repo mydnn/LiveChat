@@ -424,7 +424,7 @@
     <value>Save</value>
   </data>
   <data name="SelectUser.Text" xml:space="preserve">
-    <value>Select User </value>
+    <value>Select User by Displayname...</value>
   </data>
   <data name="SendEmailAfterChat.Text" xml:space="preserve">
     <value>Automatically send the chat transcript to agent(s) email after the chat ends.</value>

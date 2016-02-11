@@ -1,6 +1,6 @@
 ﻿angular.module('MyDnnSupportLiveChatApp', ['services.hub', 'ngMyDnnServices'])
 .controller("livechatController", function ($scope, $location, $http, $interval, $timeout, $window, $compile, $filter, HubProxy) {
-    var rootUrl = mydnnLiveChatBaseData.RootUrl;
+    var siteRoot = mydnnLiveChatBaseData.SiteRoot;
     var visitorGUID = mydnnLiveChatBaseData.VisitorGUID;
     var portalID;
     var isTyping = false;
@@ -9,7 +9,7 @@
     $scope.livechatFormValidate = false;
     $scope.waiting = false;
 
-    $http.get(rootUrl + "DesktopModules/MyDnnSupport.LiveChat/API/VisitorService/InitialLiveChat", { params: { visitorGUID: visitorGUID } }).success(function (data) {
+    $http.get(siteRoot + "DesktopModules/MyDnnSupport.LiveChat/API/VisitorService/InitialLiveChat", { params: { visitorGUID: visitorGUID } }).success(function (data) {
         portalID = data.PortalID;
 
         $scope.WidgetHtml = data.Widget;
@@ -46,7 +46,7 @@
 
     $scope.reloadLiveChat = function () {
         $scope.livechat.WidgetMinimized = false;
-        $http.get(rootUrl + "DesktopModules/MyDnnSupport.LiveChat/API/VisitorService/GetDepartmentsForLiveChat").success(function (data) {
+        $http.get(siteRoot + "DesktopModules/MyDnnSupport.LiveChat/API/VisitorService/GetDepartmentsForLiveChat").success(function (data) {
             $scope.departments = data.Departments;
             $scope.isAgentOnline = data.IsAgentOnline;
             $scope.department = null;
@@ -61,7 +61,7 @@
 
     $scope.onDepartmentChanged = function () {
         if ($scope.department)
-            $http.get(rootUrl + "DesktopModules/MyDnnSupport.LiveChat/API/VisitorService/IsAgentOnlineByDepartment", { params: { departmentID: $scope.department.DepartmentID } }).success(function (isAgentOnline) {
+            $http.get(siteRoot + "DesktopModules/MyDnnSupport.LiveChat/API/VisitorService/IsAgentOnlineByDepartment", { params: { departmentID: $scope.department.DepartmentID } }).success(function (isAgentOnline) {
                 var result = $filter("filter")($scope.departments, { DepartmentID: $scope.department.DepartmentID });
                 if (result.length) {
                     var indx = $scope.departments.indexOf(result[0]);
@@ -204,7 +204,7 @@
     });
 
     //signalR 
-    var hub = new HubProxy('MyDnnSupportLiveChatHub');
+    var hub = new HubProxy('MyDnnSupportLiveChatHub', { connectionPath: siteRoot });
     hub.on('startLiveChat', function (livechat) {
         $scope.livechat = livechat;
         parseLiveChatMessages($scope.livechat.Messages);
@@ -222,6 +222,14 @@
 
     hub.on('reciveMessage', function (message) {
         reciveMessage(message);
+    });
+
+    hub.on('agentIsTyping', function () {
+        debugger
+        $scope.livechat.AgentIsTyping = true;
+        $timeout(function () {
+            $scope.livechat.AgentIsTyping = false;
+        }, 4000);
     });
 
     hub.on('seenMessage', function (messageID) {
@@ -318,6 +326,8 @@
     }
 
     function reciveMessage(message) {
+        $scope.livechat.AgentIsTyping = false;
+
         var livechatID = message.LiveChatID;
 
         if (livechatID == $scope.livechat.LiveChatID) {
@@ -329,8 +339,7 @@
     }
 
     function visitorIsTyping() {
-        hub.invoke('VisitorIsTyping', portalID, $scope.livechat.LiveChatID).then(function (messageID) {
-        });
+        hub.invoke('VisitorIsTyping', portalID, $scope.livechat.LiveChatID);
     }
 
     function closeChat(livechatID) {
@@ -357,7 +366,7 @@
                 Body: $('#mydnnLiveChatTemp').html()
             }
 
-            $http.post(rootUrl + "DesktopModules/MyDnnSupport.LiveChat/API/VisitorService/SendEmail", data).success(function () {
+            $http.post(siteRoot + "DesktopModules/MyDnnSupport.LiveChat/API/VisitorService/SendEmail", data).success(function () {
                 $scope.waiting = false;
                 alert($scope.localizeString["EmailSentMessage.Text"] + " " + $scope.livechat.Visitor.Email);
                 angular.element(".livechat-email-transcript").fadeOut(50);
@@ -392,7 +401,7 @@
                 Body: $('#mydnnLiveChatTemp').html()
             }
 
-            $http.post(rootUrl + "DesktopModules/MyDnnSupport.LiveChat/API/VisitorService/SendOfflineMessageEmail", data).success(function () {
+            $http.post(siteRoot + "DesktopModules/MyDnnSupport.LiveChat/API/VisitorService/SendOfflineMessageEmail", data).success(function () {
             }).error(function (data, status, headers, config) {
             });
 

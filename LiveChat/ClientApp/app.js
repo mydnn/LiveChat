@@ -1,4 +1,4 @@
-﻿var app = angular.module('MyDnnSupportApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'angular-loading-bar', 'localytics.directives', 'angular-bootstrap-select', 'farbtastic', 'ngResource', 'ngSanitize', 'ngMyDnnServices', 'services.hub'])
+﻿var app = angular.module('MyDnnSupportApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'angular-loading-bar', 'localytics.directives', 'ngFileUpload', 'angular-bootstrap-select', 'ngAudio', 'farbtastic', 'ngResource', 'ngSanitize', 'ngMyDnnServices', 'services.hub'])
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
     .when('/visitorlist', {

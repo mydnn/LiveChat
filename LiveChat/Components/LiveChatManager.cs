@@ -14,6 +14,7 @@ using System.Text;
 using System.Data.SqlTypes;
 using MyDnn.Modules.Support.LiveChat.ViewModels;
 using DotNetNuke.Collections;
+using System.Globalization;
 
 namespace MyDnn.Modules.Support.LiveChat.Components
 {
@@ -341,8 +342,12 @@ namespace MyDnn.Modules.Support.LiveChat.Components
             if (!string.IsNullOrEmpty(visitorEmail))
                 condition.AppendFormat(" and VisitorEmail like N'%{0}%'", visitorEmail);
 
+            //set date culture
+            var fromDateVal = fromDate != null ? fromDate.Value.ToString(new CultureInfo("en-US")) : SqlDateTime.MinValue.Value.ToString(new CultureInfo("en-US"));
+            var toDateVal = toDate != null ? toDate.Value.ToString(new CultureInfo("en-US")) : SqlDateTime.MaxValue.Value.ToString(new CultureInfo("en-US"));
+
             //date range
-            condition.AppendFormat(" and CreateDate >= '{0}' and CreateDate<= '{1}'", fromDate != null ? fromDate : SqlDateTime.MinValue.Value, toDate != null ? toDate : SqlDateTime.MaxValue.Value);
+            condition.AppendFormat(" and CreateDate >= '{0}' and CreateDate<= '{1}'", fromDateVal, toDateVal);
 
             int from = pageIndex * pageSize + 1;
             int to = from + pageSize;

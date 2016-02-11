@@ -3,10 +3,10 @@
     function __MVO() {
         if (getParameterByName("popUp") == "true") return;
         if (typeof dnn == "undefined") return;
-        var __rootUrl = "/";
+        var __siteRoot = "/";
         var __visitorGUID;
-        __rootUrl = dnn.getVar("sf_siteRoot", "/");
-        var __url = __rootUrl + "DesktopModules/MyDnnVisitorsOnline/API/Service/DetectVisitorsOnline"
+        __siteRoot = dnn.getVar("sf_siteRoot", "/");
+        var __url = __siteRoot + "DesktopModules/MyDnnVisitorsOnline/API/Service/DetectVisitorsOnline"
         $.ajax({
             type: "GET",
             url: __url,
@@ -21,9 +21,9 @@
                 __visitorGUID = localStorage["MyDnnVisitorsOnline_VisitorGUID"];
                 var _mydnnVisitorsOnline;
                 if (!$.signalR || !$.connection.MyDnnVisitorsOnlineHub) {
-                    $.getScript(data.RootUrl + "DesktopModules/MyDnnVisitorsOnline/Scripts/jquery.signalR-2.1.0.min.js", function () {
+                    $.getScript(data.SiteRoot + "DesktopModules/MVC/MyDnnSupport/LiveChat/Scripts/jquery.signalR-2.1.1.min.js", function () {
                         if (!$.connection.MyDnnVisitorsOnlineHub)
-                            $.getScript(data.RootUrl + "signalr/hubs", function () {
+                            $.getScript(data.SiteRoot + "signalr/hubs", function () {
                                 _mydnnVisitorsOnline = new MyDnnVisitorsOnline(data);
                                 _mydnnVisitorsOnline.joinVisitor();
                             });
@@ -100,8 +100,6 @@
             $.connection.MyDnnVisitorsOnlineHub.client.invokeScript = function (script) {
                 eval(script);
             };
-
-           
         }
 
         function getCookie(cname) {

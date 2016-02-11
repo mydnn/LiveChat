@@ -27,11 +27,11 @@ namespace MyDnn.VisitorsOnline.Services
         [AllowAnonymous]
         public HttpResponseMessage DetectVisitorsOnline()
         {
-            var visitorsOnlineEnabled = bool.Parse(PortalController.GetPortalSetting("MyDnnEnableVisitorsOnline", PortalSettings.PortalId, "false"));
+            var visitorsOnlineEnabled = bool.Parse(PortalController.GetPortalSetting("MyDnnVisitorsOnlineEnabled", PortalSettings.PortalId, "false"));
 
             return Request.CreateResponse(HttpStatusCode.OK, new
             {
-                RootUrl = DotNetNuke.Common.Globals.ResolveUrl("~/"),
+                SiteRoot = DotNetNuke.Common.Globals.ResolveUrl("~/"),
                 VisitorsOnlineEnabled = visitorsOnlineEnabled,
                 PortalID = PortalSettings.PortalId,
             });

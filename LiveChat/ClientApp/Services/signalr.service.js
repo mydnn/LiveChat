@@ -19,7 +19,6 @@
 		 * @param [{Object}] options
 		 */
         function Hub(hubName, options) {
-
             // Ensure a hub name was passed
             if (!hubName) {
                 throw new Error('Hub name was not specified, be sure to pass it in when invoking the Hub class');
@@ -27,11 +26,13 @@
 
             // Hub Settings
             var settings = angular.extend({
-
                 // Enable hub logging events
                 loggingEnabled: false,
 
             }, options);
+
+            if (settings.connectionPath && settings.connectionPath[settings.connectionPath.length - 1] == '/')
+                settings.connectionPath = settings.connectionPath.slice(0, -1);
 
             // Create and set the connection property
             this.connection = $.hubConnection(settings.connectionPath);
@@ -44,8 +45,6 @@
 
             // Bind to connection events , this is only done once.
             bindConnectionEvents(this);
-
-
         }
 
         /**

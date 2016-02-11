@@ -80,6 +80,7 @@
                         <div class="message message-text" ng-show="message.SentBy!=0 && message.MessageType==0" ng-class="{'my-message':message.IsMyMessage,'sender-prevmessage':message.SenderPrevMessage}">
                             <span class="sender-displayname">{{message.SenderDisplayName}}</span>
                             <p>{{message.Message}}</p>
+                            <span class="message-time">{{message.MsgTime}}</span>
                         </div>
                     </li>
                 </ul>

@@ -111,7 +111,7 @@ namespace MyDnn.Modules.Support.LiveChat.Services
 
                 return Request.CreateResponse(HttpStatusCode.OK, new
                 {
-                    RootUrl = DotNetNuke.Common.Globals.ResolveUrl("~/"),
+                    SiteRoot = DotNetNuke.Common.Globals.ResolveUrl("~/"),
                     PortalID = PortalSettings.PortalId,
                     Template = template,
                     LiveChatEnabled = livechatEnabled,

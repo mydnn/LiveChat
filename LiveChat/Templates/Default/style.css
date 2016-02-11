@@ -563,6 +563,15 @@
             margin-top: -5px;
         }
 
+    .livechat .agent-istyping {
+        bottom: 88px;
+        color: #a3a0a0;
+        font-style: italic;
+        position: absolute;
+        text-align: center;
+        width: 100%;
+    }
+
     .livechat .livechat-tools {
         border-top: 1px solid #eee;
         box-sizing: border-box;
@@ -764,7 +773,7 @@
 
 
     .livechat-minbutton.livechat-minbutton-Left {
-        left: 1px !important;
+        left: 0 !important;
         right: auto !important;
     }
 
@@ -775,17 +784,17 @@
 
     .livechat-minbutton.livechat-minbutton-Right {
         left: auto !important;
-        right: 1px !important;
+        right: 0 !important;
     }
 
     .livechat-minbutton.livechat-minbutton-Top {
-        top: 1px !important;
+        top: 0 !important;
         bottom: auto !important;
     }
 
     .livechat-minbutton.livechat-minbutton-Bottom {
         top: auto !important;
-        bottom: 1px !important;
+        bottom: 0 !important;
     }
 
     .livechat-minbutton.livechat-minbutton-Center2 {

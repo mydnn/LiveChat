@@ -144,8 +144,14 @@
   <data name="AfterSendOfflineMessage.Text" xml:space="preserve">
     <value>Thanks for the message! We'll get back to you as soon as we can.</value>
   </data>
+  <data name="AgentDefaultAvatar.Text" xml:space="preserve">
+    <value>Agent Default Avatar</value>
+  </data>
   <data name="AgentHasOffline.Text" xml:space="preserve">
     <value>the agent has gone offline.</value>
+  </data>
+  <data name="AgentIsTyping.Text" xml:space="preserve">
+    <value>Agent is typing...</value>
   </data>
   <data name="Agents.Text" xml:space="preserve">
     <value>Agent(s)</value>
@@ -294,6 +300,9 @@
   <data name="Hours.Text" xml:space="preserve">
     <value>Hour(s)</value>
   </data>
+  <data name="IncomingChat.Text" xml:space="preserve">
+    <value>Incoming chat</value>
+  </data>
   <data name="IntroduceYourself.Text" xml:space="preserve">
     <value>Introduce Yourself</value>
   </data>
@@ -396,6 +405,9 @@
   <data name="Referrer.Text" xml:space="preserve">
     <value>Referrer</value>
   </data>
+  <data name="RefreshPage.Text" xml:space="preserve">
+    <value>Refresh Page</value>
+  </data>
   <data name="Resend.Text" xml:space="preserve">
     <value>Resend</value>
   </data>
@@ -459,6 +471,9 @@
   <data name="UpdateDepartmentMsg.Text" xml:space="preserve">
     <value>Department has been updated successfully.</value>
   </data>
+  <data name="UploadImage.Text" xml:space="preserve">
+    <value>Upload Image</value>
+  </data>
   <data name="UserAgent.Text" xml:space="preserve">
     <value>UserAgent</value>
   </data>
@@ -467,6 +482,9 @@
   </data>
   <data name="Viewing.Text" xml:space="preserve">
     <value>Viewing: </value>
+  </data>
+  <data name="VisitorAvatar.Text" xml:space="preserve">
+    <value>Visitor Avatar</value>
   </data>
   <data name="VisitorEndChatConfirm.Text" xml:space="preserve">
     <value>Are you sure you want to end this chat?</value>

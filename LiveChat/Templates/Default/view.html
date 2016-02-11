@@ -87,6 +87,9 @@
                 </div>
             </li>
         </ul>
+        <div class="agent-istyping" ng-show="livechat.AgentIsTyping">
+            {{localizeString["AgentIsTyping.Text"]}}
+        </div>
         <div class="livechat-tools">
             <!--Reconnecting...-->
             <div class="livechat-reconnecting" ng-show="livechat.ConnectionState==2">

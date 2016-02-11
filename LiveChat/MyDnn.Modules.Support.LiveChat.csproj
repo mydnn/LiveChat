@@ -45,35 +45,50 @@
   <ItemGroup>
     <Reference Include="ClientDependency.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\8.0.0\Beta\Test1\bin\ClientDependency.Core.dll</HintPath>
+      <HintPath>..\..\..\MyDnnPackage\8.0.0\Beta\Test1\bin\ClientDependency.Core.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke, Version=8.0.0.674, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\8.0.0\Beta\Test1\bin\DotNetNuke.dll</HintPath>
+      <HintPath>..\..\..\MyDnnPackage\8.0.0\Beta\Test1\bin\DotNetNuke.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.Instrumentation, Version=8.0.0.674, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\bin\DotNetNuke.Instrumentation.dll</HintPath>
+      <HintPath>..\..\..\MyDnnPackage\8.0.0\Beta\Test1\bin\DotNetNuke.Instrumentation.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.Web, Version=8.0.0.674, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\8.0.0\Beta\Test1\bin\DotNetNuke.Web.dll</HintPath>
+      <HintPath>..\..\..\MyDnnPackage\8.0.0\Beta\Test1\bin\DotNetNuke.Web.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.Web.Client, Version=8.0.0.674, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\8.0.0\Beta\Test1\bin\DotNetNuke.Web.Client.dll</HintPath>
+      <HintPath>..\..\..\MyDnnPackage\8.0.0\Beta\Test1\bin\DotNetNuke.Web.Client.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetNuke.Web.Mvc, Version=8.0.0.674, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DotNetNuke.Web.Mvc, Version=8.0.0.809, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\8.0.0\Beta\Test1\bin\DotNetNuke.Web.Mvc.dll</HintPath>
+      <HintPath>..\..\..\MyDnnPackage\8.0.0\Beta\Test1\bin\DotNetNuke.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetNuke.Web.Razor">
-      <HintPath>..\..\..\..\..\..\8.0.0\Beta\Test1\bin\DotNetNuke.Web.Razor.dll</HintPath>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.1.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.1.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.2.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -91,11 +106,11 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\8.0.0\Beta\Test1\bin\System.Web.Http.dll</HintPath>
+      <HintPath>..\..\..\MyDnnPackage\8.0.0\Beta\Test1\bin\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\bin\System.Web.Mvc.dll</HintPath>
+      <HintPath>..\..\..\MyDnnPackage\8.0.0\Test\dnn8.me\bin\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>C:\Users\mydnn\Desktop\System.Web.Optimization.dll</HintPath>
@@ -146,6 +161,7 @@
     <Compile Include="App_Start\RouteMapper.cs" />
     <Compile Include="Components\AgentManager.cs" />
     <Compile Include="Components\Common\Common.cs" />
+    <Compile Include="Components\Common\CustomMultipartFormDataStreamProvider.cs" />
     <Compile Include="Components\Common\Localization.cs" />
     <Compile Include="Components\Enums\LiveChatRating.cs" />
     <Compile Include="Components\ILiveChatMessageManager.cs" />
@@ -230,7 +246,7 @@
     <Content Include="ClientComponents\moment.js\moment.min.js" />
     <Content Include="ClientComponents\angular-farbtastic\angular-farbtastic.js" />
     <Content Include="ClientComponents\ng-table\ng-table.min.js" />
-    <Content Include="ClientComponents\signalr\jquery.signalR-2.1.0.min.js" />
+    <Content Include="ClientComponents\signalr\jquery.signalR-2.1.1.min.js" />
     <Content Include="ClientComponents\sweetalert\sweetalert.min.css" />
     <Content Include="ClientComponents\sweetalert\sweetalert.min.js" />
     <Content Include="ClientComponents\ua-parser\ua-parser.min.js" />
@@ -239,11 +255,6 @@
     <Content Include="Scripts\functions.js" />
     <Content Include="Scripts\init-widget.js" />
     <Content Include="packages.config" />
-    <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.6.4.js" />
-    <Content Include="Scripts\jquery-1.6.4.min.js" />
-    <Content Include="Scripts\jquery.signalR-2.1.0.min.js" />
-    <Content Include="Scripts\jquery.signalR-2.1.1.js" />
     <Content Include="Scripts\jquery.signalR-2.1.1.min.js" />
     <Content Include="Scripts\visitors-online.js" />
     <Content Include="Styles\animate.min.css" />
@@ -257,6 +268,7 @@
     <Content Include="Styles\fonts\Roboto-Regular-webfont.svg" />
     <Content Include="Styles\images\agent-avatar.png" />
     <Content Include="Styles\images\browsers.png" />
+    <Content Include="Styles\images\email.png" />
     <Content Include="Styles\images\flags\ad.png" />
     <Content Include="Styles\images\flags\ae.png" />
     <Content Include="Styles\images\flags\af.png" />
@@ -453,7 +465,12 @@
     <Content Include="Styles\images\flags\za.png" />
     <Content Include="Styles\images\flags\zm.png" />
     <Content Include="Styles\images\flags\zw.png" />
+    <Content Include="Styles\images\icon.png" />
+    <Content Include="Styles\images\logo.png" />
+    <Content Include="Styles\images\logo2.png" />
+    <Content Include="Styles\images\logo3.png" />
     <Content Include="Styles\images\os.png" />
+    <Content Include="Styles\images\send.png" />
     <Content Include="Styles\images\visitor-avatar.png" />
     <Content Include="Styles\img\icons\ellipsis%402x.png" />
     <Content Include="Styles\img\icons\ellipsis.png" />
@@ -483,7 +500,11 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ClientComponents\ng-file-upload\" />
+    <Folder Include="ClientComponents\ngAudio\" />
+    <Folder Include="Content\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Styles\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Styles\fonts\glyphicons-halflings-regular.ttf" />

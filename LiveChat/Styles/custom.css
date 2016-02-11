@@ -1,4 +1,8 @@
-﻿/* angular styles*/
+﻿body {
+    direction: ltr !important;
+}
+
+/* angular styles*/
 input.check-validate.ng-invalid-required {
     border-bottom-color: #f44336;
     border-bottom-width: 2px;
@@ -865,6 +869,39 @@ table.table tbody td {
     line-height: 19px;
     margin-right: 4px;
 }
+
+.widget-settings .image-preview-panel {
+    position: relative;
+    border: 1px solid #e5e5e5;
+    margin-right: 20px;
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+}
+
+    .widget-settings .image-preview-panel.dragover {
+        border: dashed 3px #888;
+    }
+
+    .widget-settings .image-preview-panel img {
+        width: 100%;
+        max-height: 120%;
+    }
+
+.widget-settings .file-input-wrapper {
+    position: relative;
+}
+
+    .widget-settings .file-input-wrapper > input[type="file"] {
+        cursor: pointer;
+        height: 30px;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        width: 115px;
+    }
+
 
 .head {
     box-shadow: 0 -2px 0 0 #eeeeee inset;
