@@ -47,3 +47,6 @@ MyDnn Live Chat is a powerfull DotNetNuke(Dnn) module for Chat with visitors in 
 <h5>No page refreshes</h5>
 <h5>See all visitors</h5>
 <h5>Desktop Notification</h5>
+
+<br>
+![](https://cloud.githubusercontent.com/assets/17091443/12995049/5d754784-d11c-11e5-84a5-513871ff4b36.png)
