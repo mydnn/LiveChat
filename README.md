@@ -24,3 +24,26 @@ MyDnn Live Chat is a powerfull DotNetNuke(Dnn) module for Chat with visitors in 
 <h5>Unlimited Agents</h5>
 ![](https://cloud.githubusercontent.com/assets/17091443/12994534/4c646888-d119-11e5-829b-020208fa9217.png)
 ![](https://cloud.githubusercontent.com/assets/17091443/12994537/4c722b30-d119-11e5-9eb2-1d82cacd2893.png)
+
+<h5>Real Time Website Visitor Monitoring</h5>
+![](https://cloud.githubusercontent.com/assets/17091443/12994445/a6fd2542-d118-11e5-8f5e-8c1f20b3b456.png)
+
+<h5>Widget Full Customize</h5>
+![](https://cloud.githubusercontent.com/assets/17091443/12994535/4c681bae-d119-11e5-88d7-4950b19df6dd.png)
+
+<h5>Minimized Chat Button Customize</h5>
+![](https://cloud.githubusercontent.com/assets/17091443/12994538/4c8995d6-d119-11e5-99ec-2e190fc9d9a5.png)
+
+<h5>Multi-language support</h5>
+<h5>Easy installation</h5>
+<h5>Sound Effects</h5>
+<h5>Offline Messaging Delivery</h5>
+<h5>Typing Indicator</h5>
+<h5>Match with your site design</h5>
+<h5>Email Chat Transcript for Visitors</h5>
+<h5>Fast response time even on a slow connection</h5>
+<h5>Compelling end-user experience</h5>
+<h5>No additional software is needed</h5>
+<h5>No page refreshes</h5>
+<h5>See all visitors</h5>
+<h5>Desktop Notification</h5>
