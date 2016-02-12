@@ -19,7 +19,7 @@ password:Admin123
 <h4>Material Design</h4>
 <h4>Free - Open Source</h4>
 <h4>Clean code</h4>
-<h4>Signal Pushing</h4>
+<h4>SignalR Pushing</h4>
 <h4>Web api, DAL 2</h4>
 
 <br>
