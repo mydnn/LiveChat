@@ -1,6 +1,12 @@
 # MyDnn.LiveChat
 MyDnn Live Chat is a powerfull DotNetNuke(Dnn) module for Chat with visitors in real-time
 <br>
+<a href="http://livechat.my-dnn.com/Live-Chat">Demo Link</a>
+username:admin
+<br>
+password:Admin123
+
+<br>
 <h2>Features for developers</h2>
 <h4>Dnn Platform 8.0+</h4> 
 <h4>Asp.net MVC</h4> 
