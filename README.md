@@ -2,7 +2,7 @@
 MyDnn Live Chat is a powerfull DotNetNuke(Dnn) module for Chat with visitors in real-time
 <br>
 <h2>
-<a href="http://livechat.my-dnn.com/Live-Chat">Demo Link</a>
+<a href="http://my-dnn.com/livechat/Live-Chat/ctl/AdminPanel/mid/756/controller/AdminPanel/action/AdminPanel?popUp=true">Demo Link</a>
 </h2>
 Admin Panel :<br>
 username:admin
